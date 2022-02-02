@@ -33,7 +33,7 @@ int main(int argc, char * argv[])
 		fprintf(stderr, "Usage: %s i j\n\nArguments:\n\ty - matrix height\n\tx - matrix lenght\n", argv[0]);
 		exit(EXIT_FAILURE);
 	}
-	unsigned int i, j; // Matrix dimension.
+	unsigned int i, j; // Matrix dimensions.
 	i = atoi(argv[1]);
 	j = atoi(argv[2]);
 	if(i == 0 || j == 0) {
@@ -43,59 +43,26 @@ int main(int argc, char * argv[])
 #ifdef DEBUG
 	printf("i: %d\nj: %d\n", i, j);
 #endif
-	
-	int matrix_a[i][j], matrix_b[i][j];
 
-	/* Filling matrixes with data */
-	printf("Please enter matrix A:\n");
-	for(unsigned int ci = 0; ci < i; ci++) {
-		for(unsigned int cj = 0; cj < j; cj++) {
-			printf("A[%d][%d]: ", ci+1, cj+1);
-			scanf("%d", &matrix_a[ci][cj]);
-		}
-		putchar('\n');
-	}
-	printf("Please enter matrix B:\n");
-	for(unsigned int ci = 0; ci < i; ci++) {
-		for(unsigned int cj = 0; cj < j; cj++) {
-			printf("B[%d][%d]: ", ci+1, cj+1);
-			scanf("%d", &matrix_b[ci][cj]);
-		}
-		putchar('\n');
-	}
+	matrix a = matrix_init(i, j);
+	matrix b = matrix_init(i, j);
+	matrix z = matrix_init(i, j);
 
-	/* Allocating memory for the result matrix. */
-	int * res = (int *)malloc((i * j) * sizeof(int));	
-	if(res == NULL) {
-		fprintf(stderr, "Memory allocation failed.\n");
+	matrix_enter(&a, 'A');
+	matrix_enter(&b, 'B');
+
+	if(matrix_add(&a, &b, &z)) {
+#ifdef DEBUG
+		fprintf(stderr, "Error: uncompatible matrix size.\n");
+#endif
 		exit(EXIT_FAILURE);
 	}
+	
+	printf("Result:\n\n");
+	matrix_print(&z);
 
-	matrix_add(i, j, (int *)matrix_a, (int *)matrix_b, res);
-
-	/* The ugly printing */
-	printf("\tRESULT\n\n");
-	for(unsigned int ci = 0; ci < i; ci++) {
-		for(unsigned int cj = 0; cj < j; cj++)
-			printf("%3d ", matrix_a[ci][cj]);
-		putchar('\n');
-	}
-	printf("\n\t+\n\n");
-	for(unsigned int ci = 0; ci < i; ci++) {
-		for(unsigned int cj = 0; cj < j; cj++)
-			printf("%3d ", matrix_b[ci][cj]);
-		putchar('\n');
-	}
-	printf("\n\t=\n\n");
-	unsigned int b = j;
-	for(unsigned int c = 0; c < i*j; c++) {
-		if(c == b) {
-			putchar('\n');
-			b = b + j;
-		} 
-		printf("%3d ", *(res + c));
-	} putchar('\n');
-
-	free(res);
-	return EXIT_SUCCESS;
+	matrix_destroy(&a);
+	matrix_destroy(&b);
+	matrix_destroy(&z);
+	exit(EXIT_SUCCESS);
 }

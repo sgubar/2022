@@ -27,21 +27,90 @@ SOFTWARE.
 extern "C" {
 #endif
 
+typedef double element;
+
+typedef struct matrix {
+	int m;
+	int n;
+	element ** mat;
+} matrix;
+
+/*
+ * Function: matrix_init
+ *
+ * Initialize an empty matrix of specified size.
+ *
+ * Arguments:
+ * 	m - matrix height
+ * 	n - matrix weight
+ * Return:
+ * 	matrix object
+ */
+matrix matrix_init(int m, int n);
+
+/*
+ * Function: matrix_destroy
+ *
+ * Destroy given matrix and empty allocated memory.
+ *
+ * Arguments:
+ * 	mat - pointer to matrix
+ * Return:
+ * 	void
+ */
+void matrix_destroy(matrix * mat);
+
+/*
+ * Function: matrix_fill
+ *
+ * Fill matrix with given value.
+ *
+ * Arguments:
+ * 	mat - pointer to matrix
+ * 	x - value to fill matrix with
+ * Return:
+ * 	void
+ */
+void matrix_fill(matrix * mat, element x);
+
+/*
+ * Function: matrix_enter
+ *
+ * Fill matrix with data from the user.
+ *
+ * Arguments:
+ * 	mat - pointer to matrix
+ * 	s - matrix name
+ * Return:
+ * 	void
+ */
+void matrix_enter(matrix * mat, char s);
+
 /*
  * Function: matrix_add
- * --------------------
- * Adds two given matrixes of specified size and stores the result.
  *
- * i: matrix height
- * j: matrix lenght
- * ma: first matrix
- * mb: second matrix
- * res: result
+ * Add two matrixes.
  *
- * returns:
- * 	void 
+ * Arguments:
+ * 	a - pointer to the first matrix
+ * 	b - pointer to the second matix
+ * Return:
+ * 	1: specified matrixes have different sizes
+ * 	0: success
  */
-void  matrix_add(const unsigned int i, const unsigned int j, const int * ma, const int * mb, int * res);
+_Bool matrix_add(const matrix * a, const matrix * b, matrix * res);
+
+/*
+ * Function: matrix_print
+ *
+ * Print given matrix.
+ *
+ * Arguments:
+ * 	mat - pointer to matrix
+ * Return:
+ * 	void
+ */
+void matrix_print(const matrix * mat);
 
 #ifdef __cplusplus
 }

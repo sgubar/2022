@@ -1,69 +1,88 @@
 #include <stdlib.h>
 #include "dk_mtrxtool.h"
 
-void mtrx_dtor(Matrix m)
+void mtrx_dtor(Matrix *m)
 {
-    free(m.ptr);
+    free(m->ptr);
 };
-Matrix mtrx_ctor(int width, int height, int values[width * height])
+void mtrx_print(Matrix* m)
 {
-    Matrix result;
-    int *data[height];
+    for(int j = 0; j < m->height; j++)
+    {
+        printf("\n");
+
+        for(int i = 0; i < m->width; i++)
+        {
+            printf("%4i\t", m->ptr[j][i]);
+        }
+
+        printf("\n");
+    }
+
+    printf("\n");
+};
+Matrix* mtrx_ctor(int width, int height, int *data)
+{
+    Matrix *result = calloc(1, sizeof(Matrix));
+    result->ptr = calloc(height, sizeof(int*));
+    result->height = height;
+    result->width = width;
+    result->hdata = data;
 
     for(int i = 0; i < height; i++)
     {
-        int *p = &values[i * width];
-        data[i] = p;
+        result->ptr[i] = &data[i * width];
     }
-
-    result.height = height;
-    result.width = width;
-    result.ptr = data;
 
     return result;
 };
-Matrix mtrx_prod(Matrix left, Matrix right)
+Matrix* mtrx_prod(Matrix *left, Matrix *right)
 {
-    Matrix result; 
-    int a = right.ptr[1][0]; // assinges OK
+    int lh = left->height;
+    int rw = right->width;
 
-    if(left.width != right.height)
+    if(left->width != right->height)
     {
-        result.ptr = NULL;
-        return result;
+        return NULL;
     }
 
-    int data[left.height * right.width];
+    int *data = calloc(rw * lh, sizeof(int));
 
-    for(int i = 0; i < left.height; i++)
+    for(int i = 0; i < lh; i++)
     {
-        for(int j = 0; j < right.width; j++)
+        for(int j = 0; j < rw; j++)
         {
-            int cell;
+            int cell = 0;
 
-            for(int k = 0; k < left.height; k++)
+            for(int k = 0; k < lh; k++)
             {
-                cell = right.ptr[k][j]; // SEGFAULT
-                cell += left.ptr[i][k] * right.ptr[k][j];
+                cell += left->ptr[i][k] * right->ptr[k][j];
             }
 
-            data[i * right.width + j] = cell;
+            data[i * rw + j] = cell;
         }
     }
 
-    return mtrx_ctor(right.width, left.height, data);
+    return mtrx_ctor(rw, lh, data);
 };
-Matrix mtrx_num_prod(Matrix, int);
-Matrix mtrx_sum(Matrix left, Matrix right)
+Matrix* mtrx_num_prod(Matrix* m, int i);
+Matrix* mtrx_sum(Matrix *left, Matrix *right)
 {
-    Matrix result;
+    int lw = left->width;
+    int lh = left->height;
+    int rw = right->width;
+    int rh = right->height;
 
-    if(left.width != right.width || left.height != right.height)
+    if(lw != rw || lh != rh)
     {
-        result.ptr = NULL;
+        return NULL;
     }
+
+    Matrix *result = calloc(1, sizeof(Matrix));
+
+
 
     return result;
 };
-Matrix mtrx_diff(Matrix,Matrix);
-Matrix mtrx_trnspse(Matrix);
+Matrix* mtrx_diff(Matrix *left, Matrix *right);
+Matrix* mtrx_trnspse(Matrix *m);

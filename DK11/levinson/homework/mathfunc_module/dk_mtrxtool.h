@@ -9,15 +9,16 @@ typedef struct Matrix
     int height;
     int width;
     // hdata is the pointer to the actual memory location of the values for this Matrix
-    // int *hdata;
+    int *hdata;
 } Matrix;
 
-void mtrx_dtor(Matrix);
-Matrix mtrx_ctor(int width, int height, int values[width*height]);
-Matrix mtrx_prod(Matrix, Matrix);
-Matrix mtrx_num_prod(Matrix, int);
-Matrix mtrx_sum(Matrix,Matrix);
-Matrix mtrx_diff(Matrix,Matrix);
-Matrix mtrx_trnspse(Matrix);
+void mtrx_dtor(Matrix*);
+void mtrx_print(Matrix*);
+Matrix* mtrx_ctor(int width, int height, int *data);
+Matrix* mtrx_prod(Matrix*, Matrix*);
+Matrix* mtrx_num_prod(Matrix*, int);
+Matrix* mtrx_sum(Matrix*, Matrix*);
+Matrix* mtrx_diff(Matrix*, Matrix*);
+Matrix* mtrx_trnspse(Matrix*);
 
 #endif

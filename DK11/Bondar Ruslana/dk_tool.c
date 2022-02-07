@@ -2,11 +2,27 @@
 
 #include "dk_tool.h"
 
+void input_size(int *row, int *col, const char *prompt);
+void input_size(int *row, int *col, const char *prompt)
+{
+    if (NULL != promt)
+    {
+        printf("%s", prompt);
+    }
+    scanf("%d%d", row, col);//приймаємо розмір який увів користувач
+}
+
+//input_size(&n, &m, "Введіть розмір першої квадтратної матриці, наприклад: 4 4\n");
+//input_size(&p, &q, "Введіть розмір другої квадратної матриці:\n");
+
 void printf_size1 ()
 {
     printf("Введіть розмір першої квадтратної матриці, наприклад: 4 4\n");
     scanf("%d%d", &m, &n);//приймаємо розмір який увів користувач
 }
+
+//int **create_matrix(int row, int col);
+
 void matrix1_elements ()
 {
     if( n !=m)//перевіряємо чи матриця квадратна

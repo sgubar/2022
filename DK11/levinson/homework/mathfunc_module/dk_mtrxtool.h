@@ -14,6 +14,7 @@ typedef struct Matrix
 
 void mtrx_dtor(Matrix*);
 void mtrx_print(Matrix*);
+Matrix* mtrx_copy(Matrix *m);
 Matrix* mtrx_ctor(int width, int height, int *data);
 Matrix* mtrx_prod(Matrix*, Matrix*);
 Matrix* mtrx_num_prod(Matrix*, int);

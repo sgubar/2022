@@ -14,4 +14,9 @@ int main(void)
     Matrix *prod = mtrx_prod(m1, m1);
 
     mtrx_print(prod);
+
+    mtrx_dtor(m1);
+    free(m1);
+    mtrx_dtor(prod);
+    free(prod);
 } 

@@ -21,10 +21,22 @@ void mtrx_print(Matrix* m)
 
     printf("\n");
 };
+Matrix* mtrx_copy(Matrix *m)
+{
+    int arrlen = m->height * m->width;
+    int *data = malloc(sizeof(int) * (arrlen));
+
+    for(int i = 0; i < arrlen; i++)
+    {
+        data[i] = m->hdata[i];
+    }
+
+    return mtrx_ctor(m->width, m->height, data);
+}
 Matrix* mtrx_ctor(int width, int height, int *data)
 {
-    Matrix *result = calloc(1, sizeof(Matrix));
-    result->ptr = calloc(height, sizeof(int*));
+    Matrix *result = malloc(sizeof(Matrix));
+    result->ptr = malloc(sizeof(int*) * height);
     result->height = height;
     result->width = width;
     result->hdata = data;
@@ -46,7 +58,7 @@ Matrix* mtrx_prod(Matrix *left, Matrix *right)
         return NULL;
     }
 
-    int *data = calloc(rw * lh, sizeof(int));
+    int *data = malloc(sizeof(int) * (rw * lh));
 
     for(int i = 0; i < lh; i++)
     {
@@ -65,7 +77,20 @@ Matrix* mtrx_prod(Matrix *left, Matrix *right)
 
     return mtrx_ctor(rw, lh, data);
 };
-Matrix* mtrx_num_prod(Matrix* m, int i);
+Matrix* mtrx_num_prod(Matrix* m, int i)
+{
+    Matrix *new = mtrx_copy(m);
+
+    for(int i = 0; i < m->height; i++)
+    {
+        for(int j = 0; j < m->width; i++)
+        {
+            new->ptr[i][j] = m->ptr[i][j] * i;
+        }
+    }
+
+    return new;
+};
 Matrix* mtrx_sum(Matrix *left, Matrix *right)
 {
     int lw = left->width;
@@ -78,11 +103,42 @@ Matrix* mtrx_sum(Matrix *left, Matrix *right)
         return NULL;
     }
 
-    Matrix *result = calloc(1, sizeof(Matrix));
+    int *data = malloc(sizeof(int) * (lw * lh));
+
+    for(int i = 0; i < lh; i++)
+    {
+        for(int j = 0; j < lw; i++)
+        {
+            data[i * rw + j] = left->ptr[i][j] + right->ptr[i][j];
+        }
+    }
 
 
-
-    return result;
+    return mtrx_ctor(lw, lh, data);
 };
-Matrix* mtrx_diff(Matrix *left, Matrix *right);
+Matrix* mtrx_diff(Matrix *left, Matrix *right)
+{
+    int lw = left->width;
+    int lh = left->height;
+    int rw = right->width;
+    int rh = right->height;
+
+    if(lw != rw || lh != rh)
+    {
+        return NULL;
+    }
+
+    int *data = malloc(sizeof(int) * (lw * lh));
+
+    for(int i = 0; i < lh; i++)
+    {
+        for(int j = 0; j < lw; i++)
+        {
+            data[i * rw + j] = left->ptr[i][j] - right->ptr[i][j];
+        }
+    }
+
+
+    return mtrx_ctor(lw, lh, data);
+};
 Matrix* mtrx_trnspse(Matrix *m);

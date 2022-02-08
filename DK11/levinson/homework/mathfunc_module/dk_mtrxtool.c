@@ -5,7 +5,7 @@ void mtrx_dtor(Matrix *m1)
 {
     if(m1 == NULL)
         return;
-        
+
     free(m1->ptr[0]);
     free(m1->ptr);
     free(m1);
@@ -119,23 +119,18 @@ Matrix* mtrx_sum(Matrix *left, Matrix *right)
         printf("\nMismatched matrices passed to mtrx_sum funciton!\n");
         return NULL;
     }
+    
+    int *data = malloc(sizeof(int) * (left->width * left->height));
 
-    int lw = left->width;
-    int lh = left->height;
-    int rw = right->width;
-    int rh = right->height;
-    int *data = malloc(sizeof(int) * (lw * lh));
-
-    for(int i = 0; i < lh; i++)
+    for(int i = 0; i < left->height; i++)
     {
-        for(int j = 0; j < lw; j++)
+        for(int j = 0; j < left->width; j++)
         {
-            data[i * rw + j] = left->ptr[i][j] + right->ptr[i][j];
+            data[i * right->width + j] = left->ptr[i][j] + right->ptr[i][j];
         }
     }
 
-
-    return mtrx_ctor(lw, lh, data);
+    return mtrx_ctor(left->width, left->height, data);
 };
 Matrix* mtrx_diff(Matrix *left, Matrix *right)
 {
@@ -150,23 +145,44 @@ Matrix* mtrx_diff(Matrix *left, Matrix *right)
         printf("\nMismatched matrices passed to mtrx_diff funciton!\n");
         return NULL;
     }
+    
+    int *data = malloc(sizeof(int) * (left->width * left->height));
 
-    int lw = left->width;
-    int lh = left->height;
-    int rw = right->width;
-    int rh = right->height;
-    int *data = malloc(sizeof(int) * (lw * lh));
-
-    for(int i = 0; i < lh; i++)
+    for(int i = 0; i < left->height; i++)
     {
-        for(int j = 0; j < lw; j++)
+        for(int j = 0; j < left->width; j++)
         {
-            data[i * rw + j] = left->ptr[i][j] - right->ptr[i][j];
+            data[i * right->width + j] = left->ptr[i][j] - right->ptr[i][j];
         }
     }
 
 
-    return mtrx_ctor(lw, lh, data);
+    return mtrx_ctor(left->width, left->height, data);
 };
-Matrix* mtrx_trnspse(Matrix *m);
+Matrix* mtrx_trnspse(Matrix *m)
+{
+    if(m == NULL)
+    {
+        printf("\nNULL pointer passed to mtrx_trnspse funciton!\n");
+        return NULL;
+    }
 
+    int h = m->height;
+    int w = m->width;
+    int arrlen = h * w;
+    int temp[arrlen];
+    int idx = 0;
+
+    for(int i = 0; i < w; i++)
+    {
+        for(int j = 0; j < h; j++)
+        {
+            temp[idx] = m->ptr[j][i];
+            idx++;
+        }
+    }
+
+    mtrx_dtor(m);
+
+    return mtrx_ctor(h, w, temp);
+};

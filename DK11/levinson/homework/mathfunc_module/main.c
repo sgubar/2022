@@ -9,7 +9,7 @@ int main(void)
     //                 31, 32, 33  };
 
     int data[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-    
+
     // int *data = malloc(sizeof(int)*10);
     // for(int i = 0; i < 10; i++)
     // {
@@ -33,6 +33,11 @@ int main(void)
 
     Matrix *x2 = mtrx_num_prod(m1, 3);
     mtrx_print(x2);
+
+    Matrix *trans1 = mtrx_trnspse(m1);
+    mtrx_print(trans1);
+    Matrix *trans2 = mtrx_trnspse(m2);
+    mtrx_print(trans2);
 
     mtrx_dtor(m1);
     mtrx_dtor(m2);

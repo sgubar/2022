@@ -3,17 +3,24 @@
 
 void mtrx_dtor(Matrix *m)
 {
+    free(m->hdata  );
     free(m->ptr);
+    free(m);
 };
 void mtrx_print(Matrix* m)
 {
-    for(int j = 0; j < m->height; j++)
+    if(m == NULL)
+    {
+        printf("NULL pointer passed to mtrx_print funciton!");
+        return NULL;
+    }
+    for(int i = 0; i < m->height; i++)
     {
         printf("\n");
 
-        for(int i = 0; i < m->width; i++)
+        for(int j = 0; j < m->width; j++)
         {
-            printf("%4i\t", m->ptr[j][i]);
+            printf("%4i\t", m->ptr[i][j]);
         }
 
         printf("\n");
@@ -23,6 +30,11 @@ void mtrx_print(Matrix* m)
 };
 Matrix* mtrx_copy(Matrix *m)
 {
+    if(m == NULL)
+    {
+        printf("NULL pointer passed to mtrx_copy funciton!");
+        return NULL;
+    }
     int arrlen = m->height * m->width;
     int *data = malloc(sizeof(int) * (arrlen));
 
@@ -35,6 +47,11 @@ Matrix* mtrx_copy(Matrix *m)
 }
 Matrix* mtrx_ctor(int width, int height, int *data)
 {
+    if(data == NULL)
+    {
+        printf("NULL pointer passed to mtrx_ctor funciton!");
+        return NULL;
+    }
     Matrix *result = malloc(sizeof(Matrix));
     result->ptr = malloc(sizeof(int*) * height);
     result->height = height;
@@ -50,11 +67,18 @@ Matrix* mtrx_ctor(int width, int height, int *data)
 };
 Matrix* mtrx_prod(Matrix *left, Matrix *right)
 {
+    if(left == NULL || right == NULL)
+    {
+        printf("NULL pointer passed to mtrx_prod funciton!");
+        return NULL;
+    }
+
     int lh = left->height;
     int rw = right->width;
 
     if(left->width != right->height)
     {
+        printf("Mismatched matrices passed to mtrx_prod funciton!");
         return NULL;
     }
 
@@ -93,21 +117,27 @@ Matrix* mtrx_num_prod(Matrix* m, int i)
 };
 Matrix* mtrx_sum(Matrix *left, Matrix *right)
 {
+    if(left == NULL || right == NULL)
+    {
+        printf("NULL pointer passed to mtrx_sum funciton!");
+        return NULL;
+    }
+
+    if(left->width != right->width || left->height != right->height)
+    {
+        printf("Mismatched matrices passed to mtrx_sum funciton!");
+        return NULL;
+    }
+
     int lw = left->width;
     int lh = left->height;
     int rw = right->width;
     int rh = right->height;
-
-    if(lw != rw || lh != rh)
-    {
-        return NULL;
-    }
-
     int *data = malloc(sizeof(int) * (lw * lh));
 
     for(int i = 0; i < lh; i++)
     {
-        for(int j = 0; j < lw; i++)
+        for(int j = 0; j < lw; j++)
         {
             data[i * rw + j] = left->ptr[i][j] + right->ptr[i][j];
         }
@@ -118,21 +148,27 @@ Matrix* mtrx_sum(Matrix *left, Matrix *right)
 };
 Matrix* mtrx_diff(Matrix *left, Matrix *right)
 {
+    if(left == NULL || right == NULL)
+    {
+        printf("NULL pointer passed to mtrx_diff funciton!");
+        return NULL;
+    }
+
+    if(left->width != right->width || left->height != right->height)
+    {
+        printf("Mismatched matrices passed to mtrx_diff funciton!");
+        return NULL;
+    }
+
     int lw = left->width;
     int lh = left->height;
     int rw = right->width;
     int rh = right->height;
-
-    if(lw != rw || lh != rh)
-    {
-        return NULL;
-    }
-
     int *data = malloc(sizeof(int) * (lw * lh));
 
     for(int i = 0; i < lh; i++)
     {
-        for(int j = 0; j < lw; i++)
+        for(int j = 0; j < lw; j++)
         {
             data[i * rw + j] = left->ptr[i][j] - right->ptr[i][j];
         }
@@ -142,3 +178,4 @@ Matrix* mtrx_diff(Matrix *left, Matrix *right)
     return mtrx_ctor(lw, lh, data);
 };
 Matrix* mtrx_trnspse(Matrix *m);
+

@@ -3,7 +3,7 @@
 
 void mtrx_dtor(Matrix *m)
 {
-    free(m->hdata  );
+    free(m->ptr[0]);
     free(m->ptr);
     free(m);
 };
@@ -14,6 +14,9 @@ void mtrx_print(Matrix* m)
         printf("NULL pointer passed to mtrx_print funciton!");
         return NULL;
     }
+
+    printf("\n============================================================================\n");
+
     for(int i = 0; i < m->height; i++)
     {
         printf("\n");
@@ -26,7 +29,7 @@ void mtrx_print(Matrix* m)
         printf("\n");
     }
 
-    printf("\n");
+    printf("\n============================================================================\n");
 };
 Matrix* mtrx_copy(Matrix *m)
 {
@@ -73,33 +76,30 @@ Matrix* mtrx_prod(Matrix *left, Matrix *right)
         return NULL;
     }
 
-    int lh = left->height;
-    int rw = right->width;
-
     if(left->width != right->height)
     {
         printf("Mismatched matrices passed to mtrx_prod funciton!");
         return NULL;
     }
 
-    int *data = malloc(sizeof(int) * (rw * lh));
+    int *data = malloc(sizeof(int) * (right->width * left->height));
 
-    for(int i = 0; i < lh; i++)
+    for(int i = 0; i < left->height; i++)
     {
-        for(int j = 0; j < rw; j++)
+        for(int j = 0; j < right->width; j++)
         {
             int cell = 0;
 
-            for(int k = 0; k < lh; k++)
+            for(int k = 0; k < left->width; k++)
             {
                 cell += left->ptr[i][k] * right->ptr[k][j];
             }
 
-            data[i * rw + j] = cell;
+            data[i * right->width + j] = cell;
         }
     }
 
-    return mtrx_ctor(rw, lh, data);
+    return mtrx_ctor(right->width, left->height, data);
 };
 Matrix* mtrx_num_prod(Matrix* m, int i)
 {

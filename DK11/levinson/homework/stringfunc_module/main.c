@@ -5,9 +5,10 @@
 int main(void)
 {
     char *test = "   test string with leading and trailing whitespaces     ";
-    char *result = str_trim(test);
-    int num = str_count_wrd(test);
+    char *haystack = "this is the haystack that they'll search for the needle";
+    char *needle = "th";
 
-    printf("\n|%s|\n", result);
-    printf("\n%i\n", num);
+    printf("Trimmed string: \n|%s|\n", str_trim(test));
+    printf("Word count: \n%i\n", str_count_wrd(test));
+    printf("Substring count: \n%i\n", str_count_substr(haystack, needle));
 }

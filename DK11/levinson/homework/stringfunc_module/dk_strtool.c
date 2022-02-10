@@ -46,11 +46,37 @@ int str_count_wrd(char* input)
 
     return wrds;
 };
+void cnt_sub(char *str, char *sub, int *ptr)
+{
+    int hay = strlen(str);
+    int ndl = strlen(sub);
+
+    if(hay >= ndl)
+    {
+        int i = 0;
+
+        while(i < ndl)
+        {
+            if(str[i] != sub[i])
+            {
+                i++;
+                goto rec;
+            }
+
+            i++;
+        }
+        
+        *ptr += 1;
+        rec:
+        cnt_sub(&str[i], sub, ptr);
+    }
+
+    return;
+};
 int str_count_substr(char *str, char *sub)
 {
-    return cnt_sub(str, sub, 0);
-};
-int cnt_sub(char *str, char *sub, int cnt)
-{
+    int result = 0;
+    cnt_sub(str, sub, &result);
 
+    return result;
 };

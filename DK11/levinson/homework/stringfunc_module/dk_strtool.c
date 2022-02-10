@@ -11,6 +11,10 @@ char* str_trim(char* input)
     {
         lead++;
     }
+
+    if(lead == len)
+        return NULL;
+
     while(input[(len - 1) - trail] == ' ')
     {
         trail++;
@@ -24,8 +28,29 @@ char* str_trim(char* input)
 
     return trimmed;
 };
-char* str_search(char*);
-char* str_reverse(char*);
-int str_count_char(char*);
-int str_count_wrd(char*);
-int str_count_substr(char*);
+int str_count_wrd(char* input)
+{
+    input = str_trim(input);
+
+    if(input == NULL)
+        return 0;
+
+    int len = strlen(input);
+    int wrds = 1;
+
+    for(int i = 1; i < len; i++)
+    {
+        if(input[i] == ' ')
+            wrds++;
+    }
+
+    return wrds;
+};
+int str_count_substr(char *str, char *sub)
+{
+    return cnt_sub(str, sub, 0);
+};
+int cnt_sub(char *str, char *sub, int cnt)
+{
+
+};

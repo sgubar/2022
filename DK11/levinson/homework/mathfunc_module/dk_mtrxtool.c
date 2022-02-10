@@ -13,10 +13,10 @@ void mtrx_dtor(Matrix *m1)
 };
 void mtrx_print(Matrix* m)
 {
-    if(m == NULL)
+    if(m == NULL || m->ptr == NULL)
     {
-        printf("\nNULL pointer passed to mtrx_print funciton!\n");
-        return NULL;
+        printf("\nNULL pointer or an invalid matrix passed to mtrx_print funciton!\n");
+        return;
     }
 
     printf("\n============================================================================\n");
@@ -61,9 +61,10 @@ Matrix* mtrx_ctor(int width, int height, int *input)
 };
 Matrix* mtrx_prod(Matrix *left, Matrix *right)
 {
-    if(left == NULL || right == NULL)
+    if(left == NULL || right == NULL ||
+    left->ptr == NULL || right->ptr == NULL)
     {
-        printf("\nNULL pointer passed to mtrx_prod funciton!\n");
+        printf("\nNULL pointer or an invalid matrix passed to mtrx_prod funciton!\n");
         return NULL;
     }
 
@@ -94,6 +95,12 @@ Matrix* mtrx_prod(Matrix *left, Matrix *right)
 };
 Matrix* mtrx_num_prod(Matrix* m, int mult)
 {
+    if(m == NULL || m->ptr == NULL)
+    {
+        printf("\nNULL pointer or an invalid matrix passed to mtrx_num_prod funciton!\n");
+        return NULL;
+    }
+
     Matrix *new = mtrx_ctor(m->width, m->height, m->ptr);
 
     for(int i = 0; i < m->height; i++)
@@ -108,9 +115,10 @@ Matrix* mtrx_num_prod(Matrix* m, int mult)
 };
 Matrix* mtrx_sum(Matrix *left, Matrix *right)
 {
-    if(left == NULL || right == NULL)
+    if(left == NULL || right == NULL ||
+    left->ptr == NULL || right->ptr == NULL)
     {
-        printf("\nNULL pointer passed to mtrx_sum funciton!\n");
+        printf("\nNULL pointer or an invalid matrix passed to mtrx_sum funciton!\n");
         return NULL;
     }
 
@@ -134,9 +142,10 @@ Matrix* mtrx_sum(Matrix *left, Matrix *right)
 };
 Matrix* mtrx_diff(Matrix *left, Matrix *right)
 {
-    if(left == NULL || right == NULL)
+    if(left == NULL || right == NULL ||
+    left->ptr == NULL || right->ptr == NULL)
     {
-        printf("\nNULL pointer passed to mtrx_diff funciton!\n");
+        printf("\nNULL pointer or an invalid matrix passed to mtrx_diff funciton!\n");
         return NULL;
     }
 
@@ -161,9 +170,9 @@ Matrix* mtrx_diff(Matrix *left, Matrix *right)
 };
 Matrix* mtrx_trnspse(Matrix *m)
 {
-    if(m == NULL)
+    if(m == NULL || m->ptr == NULL)
     {
-        printf("\nNULL pointer passed to mtrx_trnspse funciton!\n");
+        printf("\nNULL pointer or an invalid matrix passed to mtrx_trnspse funciton!\n");
         return NULL;
     }
 

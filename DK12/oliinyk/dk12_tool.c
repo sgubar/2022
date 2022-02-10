@@ -16,6 +16,10 @@ void checkBinaryNumber(void) {
         }
         numberArray[count] = number;
         count++;
+        if (count > 8) {
+            printf("Max 8 numbers!");
+            exit(0);
+        }
     }
 }
 

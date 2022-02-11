@@ -15,11 +15,11 @@ Point *createPoint(double x, double y);
 
 Circle *createCircle(Point *center, Point *edge);
 Circle *createCircleXY(double centerX, double centerY, double edgeX, double edgeY);
-Circle *createArrCircle(Point array[]);
+Circle *createArrCircle(Point *array[]);
 
 double radiusCircle(Circle *circle);
 double areaCircle(Circle *circle);
-void destroyCircle(Circle *circle);
-void printDetailCircle(int count, Circle *arrayCirles[]);
+void destroyCircles(int count, Circle *arrayCirles[]);
+void printDetailCircles(int count, Circle *arrayCirles[]);
 
 #endif

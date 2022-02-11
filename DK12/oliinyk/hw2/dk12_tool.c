@@ -30,8 +30,8 @@ Circle *createCircleXY(double centerX, double centerY, double edgeX, double edge
 	return circle;
 }
 
-Circle *createArrCircle(Point array[]) {
-	Circle *arrayCircle = createCircle(array, (array + 1));
+Circle *createArrCircle(Point *array[]) {
+	Circle *arrayCircle = createCircle(*array, (*array + 1));
 	return arrayCircle;
 }
 
@@ -55,17 +55,19 @@ double areaCircle(Circle *circle) {
     return radius;
 }
 
-void destroyCircle(Circle *circle) {
-    if(circle != NULL) {
-        free(circle->center);
-        free(circle->edge);
-        free(circle);
+void destroyCircles(int count, Circle *arrayCirles[]) {
+    for (int i = 0; i < count; i++) {
+        if(arrayCirles[i] != NULL) {
+            free(arrayCirles[i]->center);
+            free(arrayCirles[i]->edge);
+            free(arrayCirles[i]);
+        }
     }
 }
 
-void printDetailCircle(int count, Circle *arrayCirles[]) {
-    if(arrayCirles != NULL) {
-        for (int i = 0; i < count; i++) {
+void printDetailCircles(int count, Circle *arrayCirles[]) {
+    for (int i = 0; i < count; i++) {
+        if(arrayCirles[i] != NULL) {
             printf("\n");
             printf("Circle № %d:\n", i + 1);
             printf("Center point: x = %.3lf; y = %.3lf\n", arrayCirles[i]->center->x, arrayCirles[i]->center->y);

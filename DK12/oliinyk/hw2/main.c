@@ -10,19 +10,15 @@ int main(void) {
 	
 	Circle *circleTwo = createCircleXY(12, 3, -12, 15);
 
-	Point array[2];
-	array[0].x = -5;
-	array[0].y = -9;
-	array[1].x = 12;
-	array[1].y = 2;
+	Point *array[2];
+    array[0] = createPoint(-5, 9);
+    array[1] = createPoint(12, 2);
 	Circle *circleThree = createArrCircle(array);
 
     Circle *arrayCirles[3] = {circleOne, circleTwo, circleThree};
-	printDetailCircle(3, arrayCirles);
+	printDetailCircles((sizeof(arrayCirles) / sizeof(arrayCirles[0])), arrayCirles);
 
-	destroyCircle(circleOne);
-	destroyCircle(circleTwo);
-	free(circleThree);
+	destroyCircles((sizeof(arrayCirles) / sizeof(arrayCirles[0])), arrayCirles);
 
 	return 1;
 }

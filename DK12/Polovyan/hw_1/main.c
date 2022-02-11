@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "matrix.h"
+#include "dk_tool.c"
 
 int main()
 {

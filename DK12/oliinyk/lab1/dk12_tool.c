@@ -30,8 +30,8 @@ int checkDenominatorResult(int result) {
     exit(0);
 }
 
-int factorial(int A) {
-    int result = 1;
+long factorial(int A) {
+    long result = 1;
     for (int i = 1; i < A + 1; i++) {
         result *= i;
     }
@@ -44,7 +44,7 @@ float calcDenominator(int A, int B) {
     return result;
 }
 
-float mainCalc(int numerator, float denominator) {
+float mainCalc(long numerator, float denominator) {
     float result = numerator / denominator;
     return result;
 }

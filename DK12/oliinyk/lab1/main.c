@@ -4,7 +4,7 @@
 int main(void) {
     int A = getFactorialNumber();
     int B = getDenominatorNumber();
-    int numerator = factorial(A);
+    long numerator = factorial(A);
     int denominator = calcDenominator(A, B);
     float result = mainCalc(numerator, denominator);
     printResult(A, B, result);

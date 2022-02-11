@@ -8,9 +8,9 @@ int getDenominatorNumber(void);
 int checkFactorialNumber(int a);
 int checkDenominatorResult(int result);
 
-int factorial(int A);
+long factorial(int A);
 float calcDenominator(int A, int B);
-float mainCalc(int numerator, float denominator);
+float mainCalc(long numerator, float denominator);
 
 void printResult(int A, int B, float result);
 

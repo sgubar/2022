@@ -14,8 +14,8 @@ int main(int argc, const char * argv[])
         arr[i]=atoi(argv[i]);
     }
     float a=arr[1];float b=arr[2];float c=arr[3];
-    float qq = kv(a) + kv(b);
-    float s = b + upgrade(c);
+    float qq = square(a) + square(b);
+    float s = b + math_pow(c);
     if(s==0){
         return 0;
     }else

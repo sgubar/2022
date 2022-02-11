@@ -3,8 +3,8 @@
 
 #include <stdio.h>
 
-int kv(int a);
-int upgrade(int c);
+int square(int a);
+int math_pow(int c);
 int factor(int a);
 
 #endif 

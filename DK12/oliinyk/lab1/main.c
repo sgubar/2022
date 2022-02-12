@@ -1,4 +1,4 @@
-#include "dk12_tool.c"
+#include "dk12_tool.h"
 
 
 int main(void) {

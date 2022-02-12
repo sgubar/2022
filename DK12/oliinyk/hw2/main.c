@@ -1,7 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
-
-#include "dk12_tool.c"
+#include "dk12_tool.h"
 
 int main(void) {
 	Point *center = createPoint(10, 0);
@@ -16,6 +13,7 @@ int main(void) {
 	Circle *circleThree = createArrCircle(array);
 
     Circle *arrayCirles[3] = {circleOne, circleTwo, circleThree};
+    
 	printDetailCircles((sizeof(arrayCirles) / sizeof(arrayCirles[0])), arrayCirles);
 
 	destroyCircles((sizeof(arrayCirles) / sizeof(arrayCirles[0])), arrayCirles);

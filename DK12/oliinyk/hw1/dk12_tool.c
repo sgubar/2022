@@ -1,9 +1,12 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <stdbool.h>
 
 #include "dk12_tool.h"
 
+
+char numberArray[1];
+int result = 0;
+int count = 0;
 
 void checkBinaryNumber(void) {
     char number;

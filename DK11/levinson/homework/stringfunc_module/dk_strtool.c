@@ -49,11 +49,26 @@ int str_count_wrd(char* input)
 
     int len = strlen(input);
     int wrds = 1;
+    int cons_spaces = 0;
 
-    for(int i = 1; i < len; i++)
+    for(int i = 0; i < len; i++)
     {
         if(input[i] == ' ')
-            wrds++;
+        {
+            if(cons_spaces)
+            {
+                continue;
+            }
+            else
+            {
+                wrds++;
+                cons_spaces++;
+            }
+        }
+        else
+        {
+            cons_spaces = 0;
+        }
     }
 
     return wrds;

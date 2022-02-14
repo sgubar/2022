@@ -5,4 +5,4 @@ gcc dk_tool.c cs50.c main.c -o main
 # Run:
 ./main [a]
 
-a - matrix size
+a x a - matrix size

@@ -1,13 +1,21 @@
 #include "helper.h"
 
-int square(int a)
+int param(int a)
+{
+    float b;
+    printf("%i Параметр: ",a);
+    scanf("%f",&b);
+    return b;
+}
+
+int square(float a)
 {
     return a*a;
 }
 
-int math_pow(int c)
+int math_pow5(float c)
 {
-int i = 0;int k = 1;int l=1;int a=5;
+float i = 0, k = 1, l=1, a=5;
     while(i<c)
     {
         l=k*a;
@@ -17,21 +25,21 @@ int i = 0;int k = 1;int l=1;int a=5;
 return k;
 }
 
-int factor(int a)
+int factor(float a)
 {
-    int i=0,l=1,s=1,k=1;
-    s=a;
-    if(a>0 && a!=0)
+    float i=0,changenumb=1,sumfact=1,justparam=1;
+    sumfact=a;
+    if(a>0)
     {
         while(i<a)
         {
-            l=a-1;
-            k=s*l;
-            s=k;
-            a=l;
+            changenumb=a-1;
+            justparam=sumfact*changenumb;
+            sumfact=justparam;
+            a=changenumb;
             i++;
         }
-return s;
+return sumfact;
 }else 
 {
     if(a==0)
@@ -40,3 +48,17 @@ return s;
     }else return 0;
 }
 }
+
+int answer(float a,float b,float c)
+{
+    float fraction;
+    float numerator = square(a) + square(b);
+    float denominator = b + math_pow5(c);
+    if(denominator==0){
+        return 0;
+    }else
+    fraction = numerator/denominator;
+    float Q = fraction+factor(b);
+    return Q;
+}
+

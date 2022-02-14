@@ -3,6 +3,12 @@
 
 char* str_trim(char* input)
 {
+    if(input == NULL)
+    {
+        printf("\nNULL pointer passed to str_trim funciton!\n");
+        return NULL;
+    }
+
     int len = strlen(input);
     int lead = 0;
     int trail = 0;
@@ -30,6 +36,12 @@ char* str_trim(char* input)
 };
 int str_count_wrd(char* input)
 {
+    if(input == NULL)
+    {
+        printf("\nNULL pointer passed to str_count_wrd funciton!\n");
+        return 0;
+    }
+
     input = str_trim(input);
 
     if(input == NULL)
@@ -48,6 +60,12 @@ int str_count_wrd(char* input)
 };
 void cnt_sub(char *str, char *sub, int *ptr)
 {
+    if(str == NULL || sub == NULL || ptr == NULL)
+    {
+        printf("\nNULL pointer passed to cnt_sub funciton!\n");
+        return 0;
+    }
+
     int hay = strlen(str);
     int ndl = strlen(sub);
 
@@ -75,6 +93,12 @@ void cnt_sub(char *str, char *sub, int *ptr)
 };
 int str_count_substr(char *str, char *sub)
 {
+    if(str == NULL || sub == NULL)
+    {
+        printf("\nNULL pointer passed to str_count_substr funciton!\n");
+        return 0;
+    }
+
     int result = 0;
     cnt_sub(str, sub, &result);
 

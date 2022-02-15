@@ -12,15 +12,6 @@ void get_values(float *a, float *b, float *c)
     printf("\nPlease input a float value for c (must not equal 0): ");
     scanf("%f", c);
 }
-void mov_ptr(char* input)
-{
-    while(input[0] != ' ')
-    {
-        input = input[1];
-    }
-
-    input = input[1];
-}
 float expression_numerator(float a, float b, float c)
 {
     return a * c - b;

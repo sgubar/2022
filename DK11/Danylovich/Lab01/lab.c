@@ -7,5 +7,5 @@ int main(int argc, const char * argv[])
     float a = param(1);
     float b = param(2);
     float c = param(3);
-    printf("Answer:%d\n",answer(a,b,c));
+    printf("Answer:%f\n",answer(a,b,c));
 }

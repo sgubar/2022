@@ -8,12 +8,12 @@ int param(int a)
     return b;
 }
 
-int square(float a)
+float square(float a)
 {
     return a*a;
 }
 
-int math_pow5(float c)
+float math_pow5(float c)
 {
 float i = 0, k = 1, l=1, a=5;
     while(i<c)
@@ -25,7 +25,7 @@ float i = 0, k = 1, l=1, a=5;
 return k;
 }
 
-int factor(float a)
+float factor(float a)
 {
     float i=0,changenumb=1,sumfact=1,justparam=1;
     sumfact=a;
@@ -49,7 +49,7 @@ return sumfact;
 }
 }
 
-int answer(float a,float b,float c)
+float answer(float a,float b,float c)
 {
     float fraction;
     float numerator = square(a) + square(b);
@@ -61,4 +61,3 @@ int answer(float a,float b,float c)
     float Q = fraction+factor(b);
     return Q;
 }
-

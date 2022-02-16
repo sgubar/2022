@@ -1,12 +1,13 @@
-#include <stdio.h>
-#include <math.h>
-#include <stdlib.h>
 #include "tools.h"
 
-
-int main(void)
+int main()
 {
-    float result = res();
-    printf("Результат: %f \n", result);
+    int A = get_A();
+    float B = get_B();
+    float C = get_C();
+    int fact = factorial(A);
+    float upp = up(A, B, C);
+    float result = calc(upp, fact, A, C);
+    show_value(result);
     return 0;
 }

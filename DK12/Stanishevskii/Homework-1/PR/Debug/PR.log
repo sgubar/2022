@@ -1,0 +1,18 @@
+﻿  main.c
+C:\Users\vovas\Desktop\ПАРАША\PR\PR\PR\main.c(19,28): warning C4047: функция: "int ****" отличается по уровням косвенного обращения от "int ***"
+C:\Users\vovas\Desktop\ПАРАША\PR\PR\PR\main.c(19,19): warning C4024: create_matrix: различные типы для формального и фактического параметров 1
+C:\Users\vovas\Desktop\ПАРАША\PR\PR\PR\main.c(20,25): warning C4047: функция: "int ***" отличается по уровням косвенного обращения от "int **"
+C:\Users\vovas\Desktop\ПАРАША\PR\PR\PR\main.c(20,17): warning C4024: fill_matrix: различные типы для формального и фактического параметров 1
+C:\Users\vovas\Desktop\ПАРАША\PR\PR\PR\main.c(21,26): warning C4047: функция: "int ***" отличается по уровням косвенного обращения от "int **"
+C:\Users\vovas\Desktop\ПАРАША\PR\PR\PR\main.c(21,18): warning C4024: print_matrix: различные типы для формального и фактического параметров 1
+C:\Users\vovas\Desktop\ПАРАША\PR\PR\PR\main.c(24,28): warning C4047: функция: "int ****" отличается по уровням косвенного обращения от "int ***"
+C:\Users\vovas\Desktop\ПАРАША\PR\PR\PR\main.c(24,19): warning C4024: create_matrix: различные типы для формального и фактического параметров 1
+C:\Users\vovas\Desktop\ПАРАША\PR\PR\PR\main.c(25,25): warning C4047: функция: "int ***" отличается по уровням косвенного обращения от "int **"
+C:\Users\vovas\Desktop\ПАРАША\PR\PR\PR\main.c(25,17): warning C4024: fill_matrix: различные типы для формального и фактического параметров 1
+C:\Users\vovas\Desktop\ПАРАША\PR\PR\PR\main.c(26,26): warning C4047: функция: "int ***" отличается по уровням косвенного обращения от "int **"
+C:\Users\vovas\Desktop\ПАРАША\PR\PR\PR\main.c(26,18): warning C4024: print_matrix: различные типы для формального и фактического параметров 1
+C:\Users\vovas\Desktop\ПАРАША\PR\PR\PR\main.c(29,28): warning C4047: функция: "int ****" отличается по уровням косвенного обращения от "int ***"
+C:\Users\vovas\Desktop\ПАРАША\PR\PR\PR\main.c(29,19): warning C4024: create_matrix: различные типы для формального и фактического параметров 1
+C:\Users\vovas\Desktop\ПАРАША\PR\PR\PR\main.c(35,26): warning C4047: функция: "int ***" отличается по уровням косвенного обращения от "int **"
+C:\Users\vovas\Desktop\ПАРАША\PR\PR\PR\main.c(35,18): warning C4024: print_matrix: различные типы для формального и фактического параметров 1
+  PR.vcxproj -> C:\Users\vovas\Desktop\ПАРАША\PR\PR\Debug\PR.exe

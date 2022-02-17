@@ -3,6 +3,8 @@
     "files.associations": {
         "algorithm": "c",
         "random": "c",
-        "numbers": "c"
+        "numbers": "c",
+        "stdlib.h": "c",
+        "dk12tool.h": "c"
     }
 }

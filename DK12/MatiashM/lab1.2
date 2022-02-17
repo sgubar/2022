@@ -1,0 +1,96 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include "Header.h"
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+#include <malloc.h>
+
+
+void warning() {
+  printf("\n\n%s\n\n", " максимальное допустимое значение А = 14");
+}
+
+void input2( double* pA, double* pB, double* pC) {
+  printf("введите три натуральных числа:\n");
+
+  do {  
+    printf("A = "); input1(pA); 
+    printf("B = "); input1(pB);
+    printf("C = "); input1(pC);
+
+    if (100 - *pB - *pC == 0) printf("\n поменяйте значение B or C , на 0 делить нельзя\n");
+
+  } while (100 - *pB - *pC == 0);
+}
+
+void error(double* pA) {
+  if (*pA == 0.0) return;
+
+  do
+  {
+      printf("\n недопустимое значение А, введите значение больше 1: \n");
+      scanf("%lf", pA);
+  } while (*pA < 1);
+}
+
+void get_num(long double* pNUM) {
+  int code = 0;
+
+  do
+  {
+    scanf("%lf", pNUM);
+    code = getchar();
+    if (code != 10) {
+      printf("%s\n", "ессли символ не целый, повторите");
+    }
+  } while (code != 10);
+}
+
+void numc ( double* pNumerator, double* pA, double* pB, double* pC) {
+  *pNumerator = (*pA + *pB + *pC);
+}
+void demc ( double* pDenominator,  double* pB, double* pC) {
+  *pDenominator = (100 - *pB - *pC);
+}
+
+void fract(long double* res_Fraction,  double* pNumerator, double* pDenominator) {
+  *res_Fraction = (*pNumerator / *pDenominator);
+}
+
+int f_round(long double* pNUM, int choos) {
+  if (*pNUM < 0) {
+    if (choos == 1) return ((int)*pNUM * (-1));
+    if (choos == 2) return (((int)*pNUM) * (-1) + 1);
+  }
+
+  if (*pNUM >= 0) {
+    if (choos == 1) return ((int)*pNUM);
+    if (choos == 2) return (((int)*pNUM) + 1);
+  }
+}
+
+int sigma( double* pNUM, int* Res ) {  
+  check_A(pNUM);
+
+  if (*pNUM > 15) {
+    *pNUM = 15;
+  }
+
+  // A = 0
+  if (*pNUM == 0) {  
+    *pRes_sigma = pow(2, *pNUM);
+    return 0;
+  }
+
+  // A > 0  
+  if (*pNUM > 0) {
+    for (int D = 0; D <= *pNUM; D++) {
+      int A_temp = (D + *pNUM);  
+      *Res = *Res + pow(2, A_temp);
+    }
+  }
+}
+
+void f_Answer( double* res_Fraction,  int*Res1) {
+  printf("%lf\n", (*res_Fraction + *Res1));
+}

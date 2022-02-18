@@ -1,13 +1,20 @@
-#include "tools.h"
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+#include "dk_tool.h"
 
-int main()
+int main(void)
 {
-    int A = get_A();
-    float B = get_B();
-    float C = get_C();
-    int fact = factorial(A);
-    float upp = up(A, B, C);
-    float result = calc(upp, fact, A, C);
-    show_value(result);
-    return 0;
+	int A = get_A();
+	check_A(A);
+	float B = get_B();
+	float C = get_C();
+	check_C(C);
+
+	int fact1 = calc_fact1(A);
+	float up1 = calc_up1(A, B, C);
+
+	res(up1, C, fact1);
+	return 1;
 }
+     

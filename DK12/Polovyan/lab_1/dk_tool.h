@@ -1,25 +1,19 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
+#include "dk_tool.c"
 
-#ifndef _DK_TOOL_H
-#define _DK_TOOL_H
+int main()
+{
+	int A = get_A();
+	check_A(A);
+	float B = get_B();
+	float C = get_C();
+	check_C(C);
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-	
-	int get_A();
-	void check_A(int A);
-	float get_B();
-	float get_C();
-	void check_C(float C);
-	float calc_up1(int A, float B, float C);
-	int calc_fact1(int A);
-	void result(float up1, float C, int fact1);
-	
-#ifdef __cplusplus
+	int fact1 = calc_fact1(A);
+	float up1 = calc_up1(A, B, C);
+
+	result(up1, C, fact1);
+	return 1;
 }
-#endif
-
-#endif

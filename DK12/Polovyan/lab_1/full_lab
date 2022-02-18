@@ -1,0 +1,94 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+
+int get_A();
+void check_A(int A);
+float get_B();
+float get_C();
+void check_C(float C);
+void res(float up1, float C, int fact1);
+float calc_up1(int A, float B, float C);
+int calc_fact1(int A);
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+int main()
+{
+
+	int A = get_A();
+	check_A(A);
+	float B = get_B();
+	float C = get_C();
+	check_C(C);
+ 
+	int fact1 = calc_fact1(A);
+	float up1 = calc_up1(A, B, C);
+
+	res(up1, C, fact1);
+	return 0;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+int get_A()
+{
+	int A1;
+	printf("Print A:\n");
+	scanf("%d", &A1);
+	return A1;
+}
+
+float get_B()
+{
+	float B1;
+	printf("Print B:\n");
+	scanf("%f", &B1);
+	return B1;
+}
+
+float get_C()
+{
+	float C1;
+	printf("Print C:\n");
+	scanf("%f", &C1);
+	return C1;
+}
+
+float calc_up1(int A, float B, float C)
+{
+	float up = A * C - B;
+	if (up < 0) up = up * (-1);
+	return up;
+}
+
+int calc_fact1(int A)
+{
+	float fact;
+	for (int d = 0; d <= A; d++)
+	{
+		fact = fact + pow(2, d);
+	}
+	return fact;
+	
+}
+
+void res(float up1, float C, int fact1)
+{
+	float res = (up1 / (C * C * C) * fact1);
+	printf("Result: %f\n", res);
+}
+
+void check_A(int A)
+{
+	if (A < 1 || A % 1 != 0)
+	{
+		printf("A MUST BE INTEGER AND MUST NOT BE 0 !!!\n");
+		exit(0); 
+	} 
+}
+
+void check_C(float C)
+{
+	if (C == 0)
+	{
+		printf("C MUST NOT BE 0 !!!\n");
+		exit(0); 
+	}
+}

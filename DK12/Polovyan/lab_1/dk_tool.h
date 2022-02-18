@@ -1,18 +1,18 @@
-#ifndef _TOOLS_H
-#define _TOOLS_H
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
 
-   int get_A(void);
-   float get_B(void);
-   float get_C(void);
-   
-   float check_A(int A);
-   float check_B(float B);
-   
-   int factorial(int A);
-   float up(int A, float B, float C);
-   float calc(float upp, int fact, int A, float C);
-   
-   void show_value(float result);
-   
-   
+#ifndef _DK_TOOL_H
+#define _DK_TOOL_H
+
+	int get_A();
+	void check_A(int A);
+	float get_B();
+	float get_C();
+	void check_C(float C);
+	void res(float up1, float C, int fact1);
+	float calc_up1(int A, float B, float C);
+	int calc_fact1(int A);
+
+
 #endif

@@ -6,16 +6,16 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
+          
     int get_N();
     
     int get_matrix1(int n, int arr1[n*n]);
     int get_matrix2(int n, int arr2[n*n]);
     
-    void matrix1(int n, int arr1[]);
-    void matrix2(int n, int arr2[]);
+    void print_matrix1(int n, int arr1[]);
+    void print_matrix2(int n, int arr2[]);
     
-    void matrix3(int n, int arr1[], int arr2[], int arr3[]);
+    void print_matrix3(int n, int arr1[], int arr2[], int arr3[]);
 
 #ifdef __cplusplus
 }

@@ -51,9 +51,12 @@ int main()
 
 
     deletePoint(p);
+    deleteLine(l);
+    deleteLine(l2);
     }else{
     printf("It is impossible to create a rectangle with these coordinates");
 
     }
 
 }
+

@@ -38,5 +38,5 @@ int main(void) {
     deleteCircleArray(circleArray);//? free array
     printf("Free array!\n");
 
-	return 1;
+    return 1;
 }

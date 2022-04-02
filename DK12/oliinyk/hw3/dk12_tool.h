@@ -3,13 +3,13 @@
 
 #define CircleArrayIndexError (-1)
 typedef struct tag_point {
-	double x;
-	double y;
+    double x;
+    double y;
 } Point;
 
 typedef struct tag_circle {
-	Point *center;
-	Point *edge;
+    Point *center;
+    Point *edge;
 } Circle;
 
 typedef struct tag_circleArray {

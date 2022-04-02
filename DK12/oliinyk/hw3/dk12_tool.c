@@ -8,33 +8,33 @@
 long reallocateInternalStorage(CircleArray *array, int requestedCount);
 
 Point *createPoint(double x, double y) {
-	Point *point = (Point *)malloc(sizeof(Point));
-	if (point != NULL) {
+    Point *point = (Point *)malloc(sizeof(Point));
+    if (point != NULL) {
         point->x = x;
         point->y = y;
     }
-	return point;
+    return point;
 }
 
 Circle *createCircle(Point *center, Point *edge) {
-	Circle *circle = (Circle *)malloc(sizeof(Circle));
-	if(circle != NULL) {
+    Circle *circle = (Circle *)malloc(sizeof(Circle));
+    if(circle != NULL) {
         circle->center = center;
         circle->edge = edge;
     }
-	return circle;
+    return circle;
 }
 
 Circle *createCircleXY(double centerX, double centerY, double edgeX, double edgeY) {
-	Point *center = createPoint(centerX, centerY);
-	Point *edge = createPoint(edgeX, edgeY);
-	Circle *circle = createCircle(center, edge);
-	return circle;
+    Point *center = createPoint(centerX, centerY);
+    Point *edge = createPoint(edgeX, edgeY);
+    Circle *circle = createCircle(center, edge);
+    return circle;
 }
 
 Circle *createArrCircle(Point *array[]) {
-	Circle *arrayCircle = createCircle(*array, (*array + 1));
-	return arrayCircle;
+    Circle *arrayCircle = createCircle(*array, (*array + 1));
+    return arrayCircle;
 }
 
 double radiusCircle(Circle *circle) {
@@ -84,7 +84,7 @@ CircleArray *createCircleArray(int count) {
 
 int addCircleToArray(CircleArray *array, Circle *circle) {
     if (array == NULL) {
-		return CircleArrayIndexError;
+        return CircleArrayIndexError;
 	}
     int index;
     if (array->storage[array->count - 1] != NULL) {
@@ -104,78 +104,78 @@ int addCircleToArray(CircleArray *array, Circle *circle) {
 
 int setCircleAtIndex(CircleArray *array, Circle *circle, int index) {
     if (array == NULL || index < 0) {
-		return CircleArrayIndexError;
-	}
+        return CircleArrayIndexError;
+    }
 
-	if (index >= array->count) {
-		if (CircleArrayIndexError == reallocateInternalStorage(array, index + 1)) {
-			return CircleArrayIndexError;
+    if (index >= array->count) {
+        if (CircleArrayIndexError == reallocateInternalStorage(array, index + 1)) {
+            return CircleArrayIndexError;
 		}
-	}
+    }
 
-	array->storage[index] = circle;
-	return index;
+    array->storage[index] = circle;
+    return index;
 };
 
 Circle *getCircleAtIndex (CircleArray *array, int index) {
     if (array  == NULL || index < 0 || index >= array->count) {
-		return NULL;
-	}
+        return NULL;
+    }
 
-	return array->storage[index];
+    return array->storage[index];
 };
 
 int countCircleArray(CircleArray *array) {
     if (array == NULL) {
-		return CircleArrayIndexError;
-	}
+    return CircleArrayIndexError;
+    }
 
-	return array->count;
+    return array->count;
 };
 
 void printCircleArray(CircleArray *array) {
     if (array == NULL) {
-		return ;
-	}
+    return ;
+    }
 
-	for (int i = 0; i < array->count; i ++) {
-		if (array->storage[i] != NULL) {
-			printf("Circle index:  %d\n", i);
-			printDetailCircle(array->storage[i]);
-		} else {
-			printf("NULL");
-		}
-	}
+    for (int i = 0; i < array->count; i ++) {
+        if (array->storage[i] != NULL) {
+            printf("Circle index:  %d\n", i);
+            printDetailCircle(array->storage[i]);
+        } else {
+            printf("NULL");
+        }
+    }
 };
 
 void deleteCircleArray(CircleArray *array) {
     if (array != NULL) {
-		if (array->storage != NULL) {
-			free(array->storage);
-		}
-		free(array);
-	}
+        if (array->storage != NULL) {
+            free(array->storage);
+        }
+        free(array);
+    }
 };
 
 long reallocateInternalStorage(CircleArray *array, int requestedCount) {
-	if (array->count >= requestedCount) {
-		return array->count;
-	}
+    if (array->count >= requestedCount) {
+        return array->count;
+    }
 
-	int count = requestedCount * 2;
+    int count = requestedCount * 2;
 
-	Circle **storage = (Circle **)malloc(sizeof(Circle *) * count);
-	if (storage ==  NULL) {
-		return CircleArrayIndexError;
-	}
+    Circle **storage = (Circle **)malloc(sizeof(Circle *) * count);
+    if (storage ==  NULL) {
+        return CircleArrayIndexError;
+    }
 
-	bzero(storage, sizeof(Circle *) * count);
+    bzero(storage, sizeof(Circle *) * count);
 
-	memcpy(storage, array->storage, sizeof(Circle *) * array->count);
-	free(array->storage);
+    memcpy(storage, array->storage, sizeof(Circle *) * array->count);
+    free(array->storage);
 
-	array->storage = storage;
-	array->count = count;
+    array->storage = storage;
+    array->count = count;
 
-	return count;
+    return count;
 }

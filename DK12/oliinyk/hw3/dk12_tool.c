@@ -57,16 +57,6 @@ double areaCircle(Circle *circle) {
     return radius;
 }
 
-void destroyCircles(int count, Circle *arrayCirles[]) {
-    for (int i = 0; i < count; i++) {
-        if(arrayCirles[i] != NULL) {
-            free(arrayCirles[i]->center);
-            free(arrayCirles[i]->edge);
-            free(arrayCirles[i]);
-        }
-    }
-}
-
 void printDetailCircle(Circle *circle) {
     if(circle != NULL) {
         printf("\n");

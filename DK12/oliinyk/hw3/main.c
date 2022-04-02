@@ -2,16 +2,16 @@
 #include <stdio.h>
 
 int main(void) {
-	Point *center = createPoint(10, 0);
-	Point *edge = createPoint(15, 12);
-	Circle *circleOne = createCircle(center, edge);
-	
-	Circle *circleTwo = createCircleXY(12, 3, -12, 15);
+    Point *center = createPoint(10, 0);
+    Point *edge = createPoint(15, 12);
+    Circle *circleOne = createCircle(center, edge);
 
-	Point *pointsArray[2];
+    Circle *circleTwo = createCircleXY(12, 3, -12, 15);
+
+    Point *pointsArray[2];
     pointsArray[0] = createPoint(-5, 9);
     pointsArray[1] = createPoint(12, 2);
-	Circle *circleThree = createArrCircle(pointsArray);
+    Circle *circleThree = createArrCircle(pointsArray);
 
     CircleArray *circleArray = createCircleArray(3);//* count
 
@@ -33,7 +33,7 @@ int main(void) {
 
     printf("Array count: %d\n\n", countCircleArray(circleArray));
     
-	printCircleArray(circleArray);
+    printCircleArray(circleArray);
 
     deleteCircleArray(circleArray);//? free array
     printf("Free array!\n");

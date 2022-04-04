@@ -29,8 +29,6 @@ Rectangle *createRectangle(Point *p1, Point *p2) {
 }
 
 void deletePoint(Point *p) {
-	va_list valist;
-
 	if (p != NULL) {
 		free(p);
 	}

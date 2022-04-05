@@ -1,0 +1,31 @@
+#include "dk12_tool.c"
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
+
+// эллипс 
+
+int main(void) {
+	Point *center = createPoint(3, 2);
+	Point *edge_a = createPoint(1, 4);
+	Point *edge_b = createPoint(6, 5);
+	Elips *elipsOne = createElips(center, edge_a, edge_b);
+
+    Elips *elipsTwo = createElipsXY(12, 3, -12, 15, 14, 1);
+
+	Point *array[3];
+    array[0] = createPoint(-5, 9);
+    array[1] = createPoint(12, 2);
+    array[2] = createPoint(14, 2);
+	Elips *elipsThree = createArrElips(array);
+
+    Elips *arrayElips[3] = {elipsOne, elipsTwo, elipsThree};
+
+	printDetailElips((sizeof(arrayElips) / sizeof(arrayElips[0])), arrayElips);
+
+	destroyElips((sizeof(arrayElips) / sizeof(arrayElips[0])), arrayElips);
+
+	return 1;
+}
+// в этом методе мы строим фигуру по трём точкам: center - центр эллипса, edge_a - крайняя точка первой полуоси, edge_b - крайняя точка второй полуоси
+// точки должны быть построены так: если от center к edge_a и edge_b провести линии - эти линии будут перпендикулярны, только так получается эллипс

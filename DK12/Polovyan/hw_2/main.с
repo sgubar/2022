@@ -11,12 +11,12 @@ int main(void) {
 	Point *edge_b = createPoint(6, 5);
 	Elips *elipsOne = createElips(center, edge_a, edge_b);
 
-    Elips *elipsTwo = createElipsXY(12, 3, -12, 15, 14, 1);
+    Elips *elipsTwo = createElipsXY(0, 0, 0, 5, 2, 0);
 
 	Point *array[3];
-    array[0] = createPoint(-5, 9);
-    array[1] = createPoint(12, 2);
-    array[2] = createPoint(14, 2);
+    array[0] = createPoint(-25, 0);
+    array[1] = createPoint(-25, 2);
+    array[2] = createPoint(0, 0);
 	Elips *elipsThree = createArrElips(array);
 
     Elips *arrayElips[3] = {elipsOne, elipsTwo, elipsThree};

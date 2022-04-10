@@ -1,11 +1,11 @@
 #include "dk12_tool.h"
 
-// Даны координаты вершин трапеции ABCD: А (-2; -2), В (-3; 1), С (7; 7) и D (3; 1)
+// Даны координаты вершин трапеции ABCD: А (6; 6), В (3; 2), С (5; 2) и D (9; 6)
 
 int main(void) {
-	Point *point1 = createPoint(1, 2);
-	Point *point2 = createPoint(3, 3);
-    Point *point3 = createPoint(5, 2544);
+	Point *point1 = createPoint(6, 6);
+	Point *point2 = createPoint(3, 2);
+    Point *point3 = createPoint(5, 2);
     Point *point4 = createPoint(9, 6);
 
 	Trapezoid *TrapezoidOne = createTrapezoid(point1, point2, point3, point4);

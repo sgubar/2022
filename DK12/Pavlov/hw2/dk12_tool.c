@@ -3,8 +3,8 @@
 #include <math.h>
 #include "dk12_tool.h"
 
-void checkTrapezoid(double point1x, double point1y, double point2x, double point2y, double point3x, double point3y, double point4x, double point4y) //
-                                                                                                                                                    // Чтобы проверить на параллельность запишите формулу для вычисления углового коэффициента. Формула имеет вид k = (y2 - y1)/(x2 - x1), У параллельных прямых коэф. k равен.
+void checkTrapezoid(double point1x, double point1y, double point2x, double point2y, double point3x, double point3y, double point4x, double point4y)
+// Чтобы проверить на параллельность запишите формулу для вычисления углового коэффициента. Формула имеет вид k = (y2 - y1)/(x2 - x1), У параллельных прямых коэф. k равен.
 {
     if ((fabs(point2y - point1y) / fabs(point2x - point1x)) == fabs(point4y - point3y) / fabs(point4x - point3x) && fabs(point3y - point2y) / fabs(point3x - point2x) == fabs(point4y - point1y) / fabs(point4x - point1x))
     {

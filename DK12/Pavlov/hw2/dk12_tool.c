@@ -82,19 +82,17 @@ double areaTrapezoid(Trapezoid *trapezoid)
     {
         // ищем длину отрезка по теореме Пифагора (1 катет по х, 2 катет по у)
         // формула высоты трапеции: sqrt(a^2-((d-b)^2+a^2-c^2)/2(d-b))^2
-        // https://a    llcalc.ru/node/1024; - будь ласка, не задавайте більше таких завдань :0
+        // https://allcalc.ru/node/1024; - будь ласка, не задавайте більше таких завдань xD, виникли великі труднощі, бо постійно плутався через к-сть точок :0
         // s = h(a+b)/2
         h = pow(lenghtB, 2) - pow((pow((lenghtA - lenghtC), 2) + pow(lenghtB, 2) - pow(lenghtD, 2)) / (2 * (lenghtA - lenghtC)), 2);
         h = sqrt(h);
         s = (h * (lenghtA + lenghtC)) / 2;
-        printf("------------%lf-------------", h);
     }
     else if (b == d)
     {
         h = pow(lenghtA, 2) - pow((pow((lenghtD - lenghtB), 2) + pow(lenghtA, 2) - pow(lenghtC, 2)) / (2 * (lenghtD - lenghtB)), 2);
         h = sqrt(h);
         s = (h * (lenghtB + lenghtD)) / 2.0;
-        printf("------------%lf-------------", h);
     }
     return s;
 }

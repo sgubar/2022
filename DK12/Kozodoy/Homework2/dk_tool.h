@@ -6,7 +6,9 @@ typedef struct tag_point
 	double x;
 	double y;
 } Point;
-typedef struct tag_circle {
+
+typedef struct tag_circle
+{
 	Point* center;
 	double radius;
 } Circle;

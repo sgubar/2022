@@ -89,7 +89,7 @@ void swapElements(List* right, List* left)
     swapElements(right, left);
 }
 
-/////////////////////////// помилка 
+//помилка 
 
 void error()
 {

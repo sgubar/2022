@@ -4,8 +4,6 @@
 #include <strings.h>
 #include <string.h>
 #include <stdbool.h>
-
-
 #include "dk12_tool.h"
 
 long reallocateInternalStorage(ElipsArray *array, int requestedCount);
@@ -76,7 +74,6 @@ Elips *createArrElips(Point *array[]) {
 
  void printDetailElips (Elips *elips){
     if(elips != NULL) {
-        printf("\n");
         printf("Center point: x = %.3lf; y = %.3lf\n", elips->center->x, elips->center->y);
         printf("Edge a point: x = %.3lf; y = %.3lf\n", elips->edge_a->x, elips->edge_a->y);
         printf("Edge b point: x = %.3lf; y = %.3lf\n", elips->edge_b->x, elips->edge_b->y);
@@ -91,7 +88,7 @@ ElipsArray *createElipsArray(int count) {
     ElipsArray *array = (ElipsArray *)malloc(sizeof(ElipsArray));
     if (array != NULL) {
         if (count == 0) {
-            printf("Count mustn't be 0!");
+            printf("Count must be > 0!");
             return NULL;
         }
         array->count = abs(count);
@@ -103,12 +100,12 @@ ElipsArray *createElipsArray(int count) {
 
 int addElipsToArray(ElipsArray *array, Elips *elips) {
     if (array == NULL) {
-        return ElipsArrayIndexError;
+        return -1;
 	}
     int index = 0;
     if (array->storage[array->count - 1] != NULL) {
-        printf("Maximum count of elements in the array!\n\n");
-        return ElipsArrayIndexError;
+        printf("Full array!!!\n");
+        return -1;
     }
 
     for (int i = 0; i < array->count; i++) {
@@ -123,12 +120,12 @@ int addElipsToArray(ElipsArray *array, Elips *elips) {
 
 int setElipsAtIndex(ElipsArray *array, Elips *elips, int index) {
     if (array == NULL || index < 0) {
-        return ElipsArrayIndexError;
+        return -1;
     }
 
     if (index >= array->count) {
-        if (ElipsArrayIndexError == reallocateInternalStorage(array, index + 1)) {
-            return ElipsArrayIndexError;
+        if (-1 == reallocateInternalStorage(array, index + 1)) {
+            return -1;
 		}
     }
 
@@ -136,7 +133,7 @@ int setElipsAtIndex(ElipsArray *array, Elips *elips, int index) {
     return index;
 };
 
-Elips *getElipsAtIndex (ElipsArray *array, int index) {
+Elips *getElipsByIndex (ElipsArray *array, int index) {
     if (array  == NULL || index < 0 || index >= array->count) {
         return NULL;
     }
@@ -146,7 +143,7 @@ Elips *getElipsAtIndex (ElipsArray *array, int index) {
 
 int countElipsArray(ElipsArray *array) {
     if (array == NULL) {
-    return ElipsArrayIndexError;
+    return -1;
     }
 
     return array->count;
@@ -159,10 +156,10 @@ void printElipsArray(ElipsArray *array) {
 
     for (int i = 0; i < array->count; i ++) {
         if (array->storage[i] != NULL) {
-            printf("Elips index:  %d\n", i);
+            printf("Index:  %d\n", i);
             printDetailElips(array->storage[i]);
         } else {
-            printf("NULL");
+            printf("empty\n");
         }
     }
 };
@@ -185,16 +182,17 @@ long reallocateInternalStorage(ElipsArray *array, int requestedCount) {
 
     Elips **storage = (Elips **)malloc(sizeof(Elips *) * count);
     if (storage ==  NULL) {
-        return ElipsArrayIndexError;
+        return -1;
     }
 
     bzero(storage, sizeof(Elips *) * count);
 
-    memcpy(storage, array->storage, sizeof(Elips *) * array->count);
-    free(array->storage);
+    memcpy(storage, array->storage, sizeof(Elips *) * array->count); //copy
+    free(array->storage); //free storage
 
     array->storage = storage;
     array->count = count;
 
     return count;
 }
+//=======================================================================================================================================//

@@ -1,7 +1,6 @@
 #ifndef _DK12_TOOL_H
 #define _DK12_TOOL_H
 
-#define ElipsArrayIndexError (-1)
 typedef struct tag_point {
 	double x;
 	double y;
@@ -34,7 +33,7 @@ void printDetailCircle(Elips *elips);
  int addElipsToArray(ElipsArray *array, Elips *elips);
  int setElipsAtIndex(ElipsArray *array, Elips *elips, int index);
 
- Elips *getElipsAtIndex (ElipsArray *array, int index);
+ Elips *getElipsByIndex (ElipsArray *array, int index);
 
  int countElipsArray(ElipsArray *array);
  void printElipsArray(ElipsArray *array);
@@ -42,5 +41,4 @@ void printDetailCircle(Elips *elips);
 //===========================================================================================================================//
 
 #endif
-
 

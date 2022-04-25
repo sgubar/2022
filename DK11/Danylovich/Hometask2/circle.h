@@ -4,12 +4,12 @@
 #include "point.h"
 
 typedef struct tag_circle {
-    struct tag_point *A;
-    struct tag_point *B;
+    Point *A;
+    Point *B;
 } Circle;
 
 int inputCoords(int x);
-Circle *createCircleByPoints(struct tag_point *p1, struct tag_point *p2);
+Circle *createCircleByPoints(Point *p1, Point *p2);
 Circle *createCircleByCoords (int x1, int x2, int y1, int y2);
 void deleteCircle(Circle *c);
 void printCircle (Circle *c);

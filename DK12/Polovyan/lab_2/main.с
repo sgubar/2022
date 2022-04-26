@@ -1,7 +1,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "dk12_tool.c"
+#include "dk12_tool.h"
 
 int main() {
 	IntList* list = createIntList(); // create list

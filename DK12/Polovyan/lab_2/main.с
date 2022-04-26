@@ -1,1 +1,28 @@
-рпа
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "dk12_tool.c"
+
+int main() {
+	IntList* list = createIntList(); // create list
+	
+	FILE* fp;
+	fp = fopen ("dk12_tool.txt", "r+"); //add to program txt file and connect it here
+
+	if (fp == NULL) {
+		printf("Write sth in file\n"); // content check
+		return 0;
+	}
+	
+	char z;
+	while ((z = getc(fp)) != EOF)  // run throughth the list
+	{
+		addIntValueToIntList(list, z);
+	}
+	
+	fclose(fp); // close file
+	Search(list); // search brackets
+	deleteIntList(list); // delete list
+
+	return 0;
+}

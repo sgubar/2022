@@ -1,6 +1,6 @@
-##Варіант 2
+## Варіант 2
 
 Check text for brackets balance
 
-##Run
+## Run
 ./main [max text size]

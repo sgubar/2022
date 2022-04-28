@@ -25,22 +25,21 @@ int main(int argc, char *argv[])
                 head->next = createNode(head, &text[i]);                        
                 head = head->next;
                 }            
-        }  
-        else if(closingBracket(&text[i])) {
+        } else if(closingBracket(&text[i])) {
            if(head == NULL) {
                notBalanced();
             }
             else if(correctClosingBracket(head, &text[i])) {
                head = head->prev;            
             } else {
-                free(head);
                 notBalanced();
-                }
+            }
 
         } else; //skip
     }
-    if(head == NULL)
+    if(head == NULL) {
         balanced();
-     else 
-        notBalanced();   
+    } else 
+        notBalanced();
+    }
 }

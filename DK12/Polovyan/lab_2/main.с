@@ -7,7 +7,7 @@ int main() {
 	IntList* list = createIntList(); // create list
 	
 	FILE* fp;
-	fp = fopen ("dk12_tool.txt", "r+"); //add to program txt file and connect it here
+	fp = fopen ("dk12_tool_txt.c", "r+"); //add to program txt file and connect it here
 
 	if (fp == NULL) {
 		printf("Write sth in file\n"); // content check

@@ -5,6 +5,7 @@
         "random": "c",
         "numbers": "c",
         "stdlib.h": "c",
-        "dk12tool.h": "c"
+        "dk12tool.h": "c",
+        "dk12_tool.h": "c"
     }
 }

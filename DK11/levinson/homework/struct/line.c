@@ -1,8 +1,8 @@
 #include <stdlib.h>
-#include "shapes.h"
 #include <math.h>
+#include "shapes.h"
 
-LinePtr create_line_coord(int x_a, int y_a, int x_b, int y_b)
+LinePtr create_line_coord(double x_a, double y_a, double x_b, double y_b)
 {
     PointPtr a = create_point(x_a, y_a);
     PointPtr b = create_point(x_b, y_b);
@@ -24,3 +24,11 @@ double line_length(LinePtr line)
 
     return sqrt(pow(x_proj, 2) + pow(y_proj, 2));
 };
+double line_slope(LinePtr line)
+{
+    return (line->b->y - line->a->y)/(line->b->x - line->a->x);
+}
+double line_yintercept(LinePtr line, double slope)
+{
+    return line->a->y - line->a->x * slope;
+}

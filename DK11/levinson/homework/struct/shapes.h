@@ -14,18 +14,17 @@ AnglePtr cpy_angle(AnglePtr angle);
 void free_angle(AnglePtr);
 
 typedef struct Point
-{
+{   
     double x;
     double y;
 } Point, *PointPtr;
 
 PointPtr create_point(double x, double y);
 PointPtr cpy_point(PointPtr p);
-PointPtr line_projection(PointPtr p, LinePtr l);
 void free_point(PointPtr p);
+void print_point(PointPtr p);
 
 #pragma endregion
-
 #pragma region Line
 
 typedef struct Line
@@ -37,9 +36,10 @@ typedef struct Line
 LinePtr create_line_coord(double x_a, double y_a, double x_b, double y_b);
 LinePtr create_line_pts(PointPtr a, PointPtr b);
 double line_length(LinePtr line);
+double line_slope(LinePtr line);
+double line_yintercept(LinePtr line, double slope);
 
 #pragma endregion
-
 #pragma region Triangle
 
 typedef struct Triangle
@@ -52,5 +52,10 @@ typedef struct Triangle
 TrianglePtr create_PPP(PointPtr a, PointPtr b, PointPtr c);
 TrianglePtr create_LL(LinePtr a, LinePtr b);
 TrianglePtr create_AAL(AnglePtr a, AnglePtr b, LinePtr l);
+
+#pragma endregion
+#pragma region Utility
+
+PointPtr project_onto_line(PointPtr p, LinePtr l);
 
 #pragma endregion

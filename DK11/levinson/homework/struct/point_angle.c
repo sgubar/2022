@@ -2,7 +2,7 @@
 #include <math.h>
 #include "shapes.h"
 
-
+#pragma region Angle
 AnglePtr create_angle_deg(double deg)
 {
     AnglePtr a = calloc(1, sizeof(Angle));
@@ -41,6 +41,9 @@ void free_angle(AnglePtr a)
     }
 }
 
+#pragma endregion
+#pragma region Point
+
 PointPtr create_point(double x, double y)
 {
     PointPtr p = calloc(1, sizeof(Point));
@@ -49,9 +52,17 @@ PointPtr create_point(double x, double y)
 
     return p;
 };
-PointPtr line_projection(PointPtr p, LinePtr l)
+PointPtr project_onto_line(PointPtr p, LinePtr l)
 {
+    double slope = line_slope(l);
+    double yintercept = line_yintercept(l, slope);
+    double ortho_slope = pow(slope, -1) * -1;
+    double ortho_yintercept = p->y - ortho_slope * p->x;
 
+    double intersect_x = (ortho_yintercept - yintercept)/(slope - ortho_slope);
+    double intersect_y = slope * intersect_x + yintercept;
+
+    return create_point(intersect_x, intersect_y);
 };
 PointPtr cpy_point(PointPtr p)
 {
@@ -68,3 +79,12 @@ void free_point(PointPtr p)
         free(p);
     }
 };
+void print_point(PointPtr p)
+{
+    if(p != NULL)
+    {
+        printf("\nPoint coordinates - X: %4.3f; Y: %4.3f;\n", p->x, p->y);
+    }
+};
+
+#pragma endregion

@@ -52,18 +52,6 @@ PointPtr create_point(double x, double y)
 
     return p;
 };
-PointPtr project_onto_line(PointPtr p, LinePtr l)
-{
-    double slope = line_slope(l);
-    double yintercept = line_yintercept(l, slope);
-    double ortho_slope = pow(slope, -1) * -1;
-    double ortho_yintercept = p->y - ortho_slope * p->x;
-
-    double intersect_x = (ortho_yintercept - yintercept)/(slope - ortho_slope);
-    double intersect_y = slope * intersect_x + yintercept;
-
-    return create_point(intersect_x, intersect_y);
-};
 PointPtr cpy_point(PointPtr p)
 {
     PointPtr new = calloc(1, sizeof(Point));
@@ -84,6 +72,10 @@ void print_point(PointPtr p)
     if(p != NULL)
     {
         printf("\nPoint coordinates - X: %4.3f; Y: %4.3f;\n", p->x, p->y);
+    }
+    else
+    {
+        printf("NULL pointer passed to print_point() function.");
     }
 };
 

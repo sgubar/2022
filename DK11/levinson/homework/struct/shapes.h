@@ -38,6 +38,7 @@ LinePtr create_line_pts(PointPtr a, PointPtr b);
 double line_length(LinePtr line);
 double line_slope(LinePtr line);
 double line_yintercept(LinePtr line, double slope);
+void free_line(LinePtr l);
 
 #pragma endregion
 #pragma region Triangle
@@ -52,10 +53,13 @@ typedef struct Triangle
 TrianglePtr create_PPP(PointPtr a, PointPtr b, PointPtr c);
 TrianglePtr create_LL(LinePtr a, LinePtr b);
 TrianglePtr create_AAL(AnglePtr a, AnglePtr b, LinePtr l);
+double calculate_area(TrianglePtr t);
 
 #pragma endregion
 #pragma region Utility
 
 PointPtr project_onto_line(PointPtr p, LinePtr l);
+int line_isnull(LinePtr line);
+int triangle_isnull(TrianglePtr tr);
 
 #pragma endregion

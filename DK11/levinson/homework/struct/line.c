@@ -11,14 +11,35 @@ LinePtr create_line_coord(double x_a, double y_a, double x_b, double y_b)
 };
 LinePtr create_line_pts(PointPtr a, PointPtr b)
 {
-    LinePtr line = calloc(1, sizeof(Line));
+    if(a == NULL || b == NULL)
+    {
+        printf("\nNULL argument passed to create_line_pts() function.\n");
+        return NULL;
+    }
 
+    LinePtr line = calloc(1, sizeof(Line));
     line->a = a;
     line->b = b;
+
     return line;
+};
+void free_line(LinePtr l)
+{
+    if(l != NULL)
+    {
+        free_point(l->a);
+        free_point(l->b);
+        free(l);
+    }
 };
 double line_length(LinePtr line)
 {
+    if(line_isnull(line))
+    {
+        printf("\nNULL argument passed to line_length() function.\n");
+        return -1;
+    }
+        
     double x_proj = line->a->x - line->b->x;
     double y_proj = line->a->y - line->b->y;
 
@@ -26,9 +47,21 @@ double line_length(LinePtr line)
 };
 double line_slope(LinePtr line)
 {
+    if(line_isnull(line))
+    {
+        printf("\nNULL argument passed to line_slope() function.\n");
+        return -1;
+    }
+        
     return (line->b->y - line->a->y)/(line->b->x - line->a->x);
 }
 double line_yintercept(LinePtr line, double slope)
 {
+    if(line_isnull(line))
+    {
+        printf("\nNULL argument passed to line_yintercept() function.\n");
+        return -1;
+    }
+        
     return line->a->y - line->a->x * slope;
 }

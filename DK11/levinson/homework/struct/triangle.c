@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "shapes.h"
 
-TrianglePtr create_PPP(PointPtr a, PointPtr b, PointPtr c)
+TrianglePtr create_triangle_PPP(PointPtr a, PointPtr b, PointPtr c)
 {
     if(a == NULL || b == NULL || c == NULL)
     {
@@ -10,13 +10,17 @@ TrianglePtr create_PPP(PointPtr a, PointPtr b, PointPtr c)
     }
 
     TrianglePtr trn = calloc(1, sizeof(Triangle));
-    trn->pt_a = a;
-    trn->pt_b = b;
-    trn->pt_c = c;
+    trn->pt_a = cpy_point(a);
+    trn->pt_b = cpy_point(b);
+    trn->pt_c = cpy_point(c);
     
     return trn;
 };
-TrianglePtr create_LL(LinePtr a, LinePtr b)
+TrianglePtr create_triangle_PArr(Point pts[3])
+{
+    return create_triangle_PPP(&pts[0], &pts[1], &pts[2]);
+}
+TrianglePtr create_triangle_LL(LinePtr a, LinePtr b)
 {
     if(line_isnull(a) || line_isnull(b))
     {
@@ -24,13 +28,13 @@ TrianglePtr create_LL(LinePtr a, LinePtr b)
         return NULL;
     }
 
-    if(a->a == b->a || a->b == b->a)
+    if(points_equal(a->a, b->a) || points_equal(a->a, b->b))
     {
-        return create_PPP(a->a, a->b, b->b);
+        return create_triangle_PPP(a->b, b->a, b->b);
     }
-    else if (a->a == b->b || a->b == b->b)
+    else if (points_equal(a->b, b->a) || points_equal(a->b, b->b))
     {
-        return create_PPP(a->a, a->b, b->a);
+        return create_triangle_PPP(a->a, b->a, b->b);
     }
     else
     {
@@ -38,22 +42,14 @@ TrianglePtr create_LL(LinePtr a, LinePtr b)
         return NULL;
     }
 };
-double calculate_area(TrianglePtr t)
+void free_triangle(TrianglePtr t)
 {
-    if(triangle_isnull(t))
+    if(t != NULL)
     {
-        printf("\nNULL argument passed to calculate_area() function.\n");
-        return -1;
+        free_point(t->pt_a);
+        free_point(t->pt_b);
+        free_point(t->pt_c);
+        free(t);
+        t = NULL;
     }
-
-    LinePtr base = create_line_pts(t->pt_a, t->pt_b);
-    PointPtr h = project_onto_line(t->pt_c, base);
-    LinePtr height = create_line_pts(t->pt_c, h);
-    double area = line_length(height) * line_length(base) / 2;
-
-    free_point(h);
-    free_line(base);
-    free_line(height);
-
-    return area;
 };

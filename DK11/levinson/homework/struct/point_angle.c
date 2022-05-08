@@ -38,6 +38,7 @@ void free_angle(AnglePtr a)
     if(a != NULL)
     {
         free(a);
+        a = NULL;
     }
 }
 
@@ -65,6 +66,7 @@ void free_point(PointPtr p)
     if(p != NULL)
     {
         free(p);
+        p = NULL;
     }
 };
 void print_point(PointPtr p)

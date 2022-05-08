@@ -1,14 +1,12 @@
-#ifndef DK_TOOL_H_INCLUDED
-#define DK_TOOL_H_INCLUDED
+#include <stdio.h>
+#include <stdlib.h>
+#define DK_TOOL_H
+#ifdef DK_TOOL_H
 
-int m, n, p, q, a, b, i, sum;
-int matr1[100][100], matr2[100][100], mult[100][100];
+int** createMatrix(int row, int col);
+void inputMatrix1(int** m1, int row, int col);
+void inputMatrix2(int** m2, int row, int col);
+int** multiply(int** m2, int** m1, int row, int col);
+void result(int** m1, int row, int col);
 
-void sizeOfFirstMatrix();
-void matrix1Elements();
-void sizeOfSecondMatrix();
-void matrix2Elements();
-void multiply();
-void result();
-
-#endif 
+#endif // DK_TOOL_H

@@ -1,24 +1,34 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <iso646.h>
-#include "tool.h"
+#include <string.h>
+#include <math.h>
 
-int main(int argc, char const *argv[])
+int main()
 {
-    char element;
-
-    List *p_begin = scanElem(); 	// створення списку
-
-    
-    printf(" Enter key element : ");
-    scanf("%c", &element);			// задання ключового елементу
-
-    listPrint(p_begin);				// вивід структури на екран
-    printf("\n");
-
-    check(p_begin, element);		// swap елементів
-
-    listPrint(p_begin);				// вивід нової структури на екран
-   
-    return 0;
+    while(1)
+    {
+        printf("Enter path to .c/.cpp file or 'qqq' to exit program: ");
+        char buf[256];
+        gets(buf);
+        if(strcmp("qqq", buf) == 0) return 0;
+        else
+        {
+            FILE* f = fopen(buf, "r");
+            if(f == NULL)
+            {
+                printf("Error reading file!\n");
+                continue;
+            }
+            int balance = 0;
+            while(!feof(f))
+            {
+                char c = fgetc(f);
+                if(c == '{') balance++;
+                else if(c == '}') balance--;
+            }
+            if(balance == 0) printf("Parentheses are balanced\n");
+            else printf("Parentheses are not balanced! %i bracket(s) %s\n.", abs(balance), balance < 0 ? "redunant" : "lacks");
+            fclose(f);
+        }
+    }
 }

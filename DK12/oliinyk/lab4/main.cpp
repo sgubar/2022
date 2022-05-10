@@ -11,8 +11,7 @@
 double static zoom = 5;
 double leftRigth, upDown;
 
-void keyboard(unsigned char key, int x, int y)
-{
+void keyboard(unsigned char key, int x, int y) {
 	switch (key) {
 	case 27: //? Escape
 		exit(0);
@@ -87,8 +86,7 @@ void lineYX(double y) {
 	glEnd();
 }
 
-void display()
-{
+void display() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
 	grafBuilder();
 	lineX();
@@ -107,8 +105,7 @@ void timer(int value) {
 	glutTimerFunc(30, timer, 0); 
 }
 
-int main(int argc, char* argv[])
-{
+int main(int argc, char* argv[]) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGBA | GLUT_SINGLE);
 	glutInitWindowPosition(100, 100);

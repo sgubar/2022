@@ -11,7 +11,7 @@
 double static zoom = 5;
 double leftRigth, upDown;
 
-void keyboard(unsigned char key, int x, int y) {
+void shutdown(unsigned char key, int x, int y) {
 	switch (key) {
 	case 27: //? Escape
 		exit(0);
@@ -19,7 +19,7 @@ void keyboard(unsigned char key, int x, int y) {
 	}
 }
 
-void zoomKeys(int key, int x, int y) {
+void controlKeys(int key, int x, int y) {
 	switch (key) {
 	case GLUT_KEY_LEFT:
 		leftRigth = leftRigth - 0.1;
@@ -111,9 +111,9 @@ int main(int argc, char* argv[]) {
 	glutInitWindowPosition(100, 100);
 	glutInitWindowSize(800, 800);
 	glutCreateWindow("Lab 4 by RenatTOP");
-	glutSpecialFunc(zoomKeys);
+	glutSpecialFunc(controlKeys);
 	glutDisplayFunc(display);
-	glutKeyboardFunc(keyboard);
+	glutKeyboardFunc(shutdown);
 	glutTimerFunc(0, timer, 0);
 	glFlush();
 	glutMainLoop();

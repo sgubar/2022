@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "three.h"
+#include "tree.h"
 
 int main() {
 	DoubleTree *tree = createDoubleTree();

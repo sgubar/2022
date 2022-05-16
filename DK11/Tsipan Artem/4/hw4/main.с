@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include "doublelist.h"
+
+int main(int argc, const char * argv[]){
+
+    IntDoubleList *intlist = createIntDoubleList();
+
+    addIntValueToIntDoubleList(intlist,48);
+    printIntDoubleListFromHead(intlist);
+
+    addIntValueToIntDoubleList(intlist,51);
+    printIntDoubleListFromHead(intlist);
+
+    addIntValueToIntDoubleList(intlist,13);
+    printIntDoubleListFromHead(intlist);
+
+    removeLastElementFromIntDoubleList(intlist);
+    printIntDoubleListFromHead(intlist);
+
+    removeFirstElementFromIntDoubleList(intlist);
+    printIntDoubleListFromHead(intlist);
+
+    removeLastElementFromIntDoubleList(intlist);
+    printIntDoubleListFromHead(intlist);
+
+    addIntValueToIntDoubleList(intlist,10);
+    addIntValueToIntDoubleList(intlist,20);
+    addIntValueToIntDoubleList(intlist,30);
+    addIntValueToIntDoubleList(intlist,40);
+    addIntValueToIntDoubleList(intlist,50);
+    printIntDoubleListFromHead(intlist);
+
+    insertIntElementToIntDoubleListAtIndex(intlist,2,14);
+    printIntDoubleListFromHead(intlist);
+    
+    removeIntElementFromIntDoubleListAtIndex(intlist,2);
+    printIntDoubleListFromHead(intlist);
+    
+
+    deleteIntDoubleList(intlist);
+}

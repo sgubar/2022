@@ -1,11 +1,28 @@
-#include <stdio.h>
 #include "shapes.h"
 
+int validate_triangle(TrianglePtr t)
+{
+    if(t == NULL || t->pt_a == NULL || t->pt_b == NULL || t->pt_c == NULL)
+    {
+        return 0;
+    }
+    else
+    {
+        return 1;    
+    }
+}
+TrianglePtr cpy_tringle(TrianglePtr source)
+{
+    if(source == NULL)
+        return source;
+
+    return create_triangle_PPP(source->pt_a, source->pt_b, source->pt_c);
+};
 TrianglePtr create_triangle_PPP(PointPtr a, PointPtr b, PointPtr c)
 {
     if(a == NULL || b == NULL || c == NULL)
     {
-        printf("\nNULL argument passed to create_LL() function.\n");
+        printf("\nNULL argument passed to create_triangle_PPP() function.\n");
         return NULL;
     }
 
@@ -24,7 +41,7 @@ TrianglePtr create_triangle_LL(LinePtr a, LinePtr b)
 {
     if(line_isnull(a) || line_isnull(b))
     {
-        printf("\nNULL argument passed to create_LL() function.\n");
+        printf("\nNULL argument passed to create_triangle_LL() function.\n");
         return NULL;
     }
 
@@ -53,3 +70,28 @@ void free_triangle(TrianglePtr t)
         t = NULL;
     }
 };
+void print_triangle(TrianglePtr t)
+{
+    char* info = triangle_info(t);
+    printf("\n%s\n", info);
+};
+char* triangle_info(TrianglePtr t)
+{
+    char* failed = "sprintf() has failed inside triangle_info() function.";
+
+    if(!validate_triangle(t))
+        return "NULL";
+
+    char* buffer = calloc(80, sizeof(char));
+    int result = sprintf(buffer, "Triangle defined by: a(%4.1f, %4.1f), b(%4.1f, %4.1f), c(%4.1f, %4.1f)", 
+    t->pt_a->x, t->pt_a->y, t->pt_b->x, t->pt_b->y, t->pt_c->x, t->pt_c->y);
+
+    if(result)
+    {
+        return buffer;
+    }
+    else
+    {
+        return failed;
+    }
+}

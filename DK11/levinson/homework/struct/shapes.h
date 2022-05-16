@@ -1,4 +1,7 @@
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
 
 #pragma region PointAngle
 
@@ -51,7 +54,9 @@ typedef struct Triangle
 TrianglePtr create_triangle_PPP(PointPtr a, PointPtr b, PointPtr c);
 TrianglePtr create_triangle_PArr(Point pts[3]);
 TrianglePtr create_triangle_LL(LinePtr a, LinePtr b);
+TrianglePtr cpy_tringle(TrianglePtr source);
 void print_triangle(TrianglePtr t);
+char* triangle_info(TrianglePtr t);
 void free_triangle(TrianglePtr t);
 
 #pragma endregion

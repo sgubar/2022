@@ -1,6 +1,3 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <math.h>
 #include "shapes.h"
 
 int points_equal(PointPtr a, PointPtr b)

@@ -1,6 +1,3 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <math.h>
 #include "shapes.h"
 
 LinePtr create_line_coord(double x_a, double y_a, double x_b, double y_b)

@@ -17,9 +17,9 @@ typedef struct tagEllipse {
 }Ellipse;
 
 
-Ellipse* createEllipse(Point* Centre, int* r, int* R);
-void destroyEllipse(Ellipse* aEllipse);
-float SquareOfEllipse(Ellipse* aEllipse);
-void printEllipse(Ellipse* aEllipse);
+Ellipse* createEllipse(Point* Centre, int r, int R);
+void destroyEllipse(Ellipse* el);
+float SquareOfEllipse(Ellipse* el);
+void printEllipse(Ellipse* el);
 
 #endif 

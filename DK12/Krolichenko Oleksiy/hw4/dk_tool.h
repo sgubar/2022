@@ -1,21 +1,32 @@
-#ifndef _DK_TOOL_H
-#define _DK_TOOL_H
+#ifndef DK_TOOL_H
+#define DK_TOOL_H
 
-typedef struct tagPoint {
-	int x;
-	int y;
-}Point;
+#include <stdio.h>
+#include <stdlib.h>
 
-typedef struct tagEllipse {
-	Point* O;
-	int r;
-	int R;
-}Ellipse;
+typedef struct intNode Node;
+typedef struct intNode {
+	char value;
+	Node* prev;
+	Node* next;
+}Node;
 
-Ellipse* createEllipse(Point* Centre, int* r, int* R);
+typedef struct intList {
+	int size;
+	Node* first;
+	Node* last;
+}List;
 
-float SquareOfEllipse(Ellipse* aEllipse);
-void printEllipse(Ellipse* aEllipse);
-void destroyEllipse(Ellipse* aEllipse);
+List* createList();
+Node* createNodeWithLetter(char letter);
+
+void addElement(List* list, char letter);
+void insertElement(List* list, int index, char letter);
+void deleteElement(List* list, int index);
+void printList(List* list);
+void sizeOfList(List* list);
+void deleteList(List* list);
+
+Node* NodeAtIndex(List* list, int index);
 
 #endif

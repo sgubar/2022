@@ -76,9 +76,6 @@ void printArray(ellipseArray* arr) {
 // функція знищення масиву
 void freeArray(ellipseArray* arr) {
     if (NULL != arr) {
-        for (int i = 0; i < arr->count; i++) {
-            destroyEllipse(arr->ellipses[i]);
-        }
         free(arr->ellipses);
         free(arr);
     }

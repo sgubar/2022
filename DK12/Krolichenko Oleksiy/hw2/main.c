@@ -14,7 +14,7 @@ int main() {
 	int r = 10;
 	int R = 20;
 
-	Ellipse* El1 = createEllipse(&Centre, &r, &R);
+	Ellipse* El1 = createEllipse(&Centre, r, R);
 
 	printEllipse(El1);
 

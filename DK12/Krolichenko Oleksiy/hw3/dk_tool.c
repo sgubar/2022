@@ -6,7 +6,7 @@
 
 Point* copyPointWithPoint(Point* point);
 
-Ellipse* createEllipse(Point* Centre, int* r, int* R) {
+Ellipse* createEllipse(Point* Centre, int r, int R) {
 
 	Ellipse* result = NULL;
 
@@ -16,8 +16,8 @@ Ellipse* createEllipse(Point* Centre, int* r, int* R) {
 		if (NULL != result) {
 			
 			result->O = copyPointWithPoint(Centre);
-			result->r = *r;
-			result->R = *R;
+			result->r = r;
+			result->R = R;
 		}
 	}
 

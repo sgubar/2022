@@ -1,0 +1,198 @@
+#include "doublelist.h"
+#include <stdlib.h>
+
+Node *createDoubleListIntElement(int value){
+    Node *result = (Node *)malloc(sizeof(Node));
+    if(result != NULL){
+        result->value = value;
+        result->next = NULL;
+        result->previous = NULL;
+    }
+    return result;
+}
+
+void deleteDoubleListIntElement(Node *element){
+    if(element != NULL) {
+		free(element);
+	}
+}
+
+void printDoubleListIntElement(Node *element){
+	if(element != NULL) {
+		printf("%d", element->value);
+	}
+}
+
+IntDoubleList *createIntDoubleList(void){
+    IntDoubleList *result = (IntDoubleList *)malloc(sizeof(IntDoubleList));
+
+    if(result != NULL){
+    result->head = NULL;
+    result->tail = NULL;
+    }
+    return result;
+}
+
+void deleteIntDoubleList(IntDoubleList *list){
+    if(list == NULL){
+    return;
+    }
+    Node *element = list->head;
+    Node *element2 = list->tail;
+
+    while (element != NULL){
+    Node *temp = element->next;
+    deleteDoubleListIntElement(element);
+    element = temp;
+    }
+    while (element2 != NULL){
+    Node *temp = element2->previous;
+    deleteDoubleListIntElement(element2);
+    element2 = temp;
+    }
+    free(list);
+}
+
+void printIntDoubleListFromHead(IntDoubleList *list){
+    if(list == NULL){
+        printf("Invalid a pointer to the list\n");
+        return;
+    }
+    printf("Друкування двозв'язного списку\n\n");
+    printf("[");
+    for (Node *element = list->head; element != NULL; element = element->next){
+    printDoubleListIntElement(element);
+    if (element->next != NULL){
+    printf(",");
+   }
+   }
+    printf("]\n");
+}
+
+long countOfIntSingleList(IntDoubleList *list){
+    if(NULL == list){
+        return 0;
+    }
+    long count = 0;
+    Node *element = list->head;
+
+    while(element != NULL){
+        element = element->next;
+        count++;
+   }
+   
+    return count;
+}
+
+int addIntValueToIntDoubleList(IntDoubleList *list, int value){
+    if(list == NULL){
+        return 0;
+    }
+    Node *element = createDoubleListIntElement(value);
+    if (element == NULL){
+        return 0;
+    }
+    if(list->head == NULL){
+        list->head = element;
+        return 1;
+    }
+    Node *tail = list->head;
+
+    while(NULL != tail->next){
+    tail = tail->next;
+    }
+    tail->next = element;
+    return 1;
+}
+void removeLastElementFromIntDoubleList(IntDoubleList *list){
+    if(list == NULL){
+        return;
+    }
+    if(list->head == NULL){
+        return;
+    }
+    Node *element = list->head;
+
+    if(element->next == NULL){
+        list->head = NULL;
+        deleteDoubleListIntElement(element);
+        return;
+     }
+
+    while(element->next != NULL && element->next->next != NULL){
+    element = element->next;
+    }
+    deleteDoubleListIntElement(element->next);
+    element->next = NULL;
+}
+void removeFirstElementFromIntDoubleList(IntDoubleList *list){
+    if(list == NULL){
+        return;
+    }
+    if(list->head == NULL){
+        return;
+    }
+    Node *element = list->head->next;
+    deleteDoubleListIntElement(list->head);
+    list->head = element;
+}
+
+
+int insertIntElementToIntDoubleListAtIndex(IntDoubleList *list, int index, int value){
+    if(list == NULL){
+    return 0;
+    }
+    long count = countOfIntSingleList(list);
+
+    if(count == index){
+       return addIntValueToIntDoubleList(list, value);
+    }
+    Node *element = createDoubleListIntElement(value);
+    if(element == NULL){
+        return 0;
+    }
+    if(index == 0){
+        element->next = list->head;
+        list->head = element;
+    } else{
+        int current = 0;
+        Node *previous_element = list->head;
+        while(previous_element != NULL && current < index - 1){
+            previous_element = previous_element->next;
+            current++;
+        }
+
+        element->next = previous_element->next;
+        previous_element->next = element;
+
+    }
+    return 1;
+}
+
+int removeIntElementFromIntDoubleListAtIndex(IntDoubleList *list, int index){
+    if(list == NULL){
+        return 0;
+    }
+    long count = countOfIntSingleList(list);
+    if(index >= count){
+        return 0;
+    }
+    if(index == 0){
+        removeFirstElementFromIntDoubleList(list);
+        return 1;
+    }else if(index == count - 1){
+        removeLastElementFromIntDoubleList(list);
+        return 1;
+    }else{
+        int current = 0;
+        Node *previous_element = list->head; 
+        while(previous_element != NULL && current < index - 1){
+        Node *temp = previous_element->next;
+        previous_element->next = temp->next;
+        previous_element = previous_element->next;
+        current++;
+        deleteDoubleListIntElement(temp);
+    }
+    }
+    return 1;
+}

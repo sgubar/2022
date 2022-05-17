@@ -16,22 +16,22 @@ int main() {
     
     int r = 10;
     int R = 20;
-    Ellipse* el1 = createEllipse(&Centre, &r, &R);
+    Ellipse* el1 = createEllipse(&Centre, r, R);
     addElement(theArray, el1);
     
     r = 30;
     R = 40;
-    Ellipse* el2 = createEllipse(&Centre, &r, &R);
+    Ellipse* el2 = createEllipse(&Centre, r, R);
     addElement(theArray, el2);
     
     r = 50;
     R = 60;
-    Ellipse* el3 = createEllipse(&Centre, &r, &R);
+    Ellipse* el3 = createEllipse(&Centre, r, R);
     addElement(theArray, el3);
 
     r = 70;
     R = 80;
-    Ellipse* el4 = createEllipse(&Centre, &r, &R);
+    Ellipse* el4 = createEllipse(&Centre, r, R);
     insertElement(theArray, el4, 0);
 
     printArray(theArray);

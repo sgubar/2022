@@ -72,13 +72,10 @@ void free_array(ArrayOfTrianglesPtr arr)
     if(arr == NULL)
         return;
     
-    if(arr->data_ptr != NULL)
-    {
-        free(arr->data_ptr);
-        arr->data_ptr = NULL;
-    }
-
+    free(arr->data_ptr);
     free(arr);
+
+    arr->data_ptr = NULL;
     arr = NULL;
 };
 int insert_at_index(ArrayOfTrianglesPtr arr, TrianglePtr tri, long index)
@@ -134,8 +131,7 @@ int merge_arrays(ArrayOfTrianglesPtr dest, ArrayOfTrianglesPtr src, long dest_in
             dest->data_ptr[dest_index + i] = src->data_ptr[i];
         }
 
-        free(src->data_ptr);
-        free(src);
+        free_array(src);
 
         return 1;
     }

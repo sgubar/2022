@@ -85,16 +85,20 @@ int insert_at_index(ArrayOfTrianglesPtr arr, TrianglePtr tri, long index)
 {
     if(validate_index_access(arr, index) && arr->data_ptr[index] == NULL)
     {
-        arr->data_ptr[index] = cpy_tringle(tri);
+        arr->data_ptr[index] = tri;
         tri = NULL;
 
         return 1;
+    }
+    if(!validate_array(arr))
+    {
+        return 0;
     }
 
     long extend_by = index <= arr->capacity ? 1 : index + 1 - arr->capacity;
     long shift = arr->capacity - index;
 
-    if(!validate_array(arr) || !extend_array_storage(arr, extend_by))
+    if(!extend_array_storage(arr, extend_by))
     {
         return 0;
     }
@@ -110,7 +114,40 @@ int insert_at_index(ArrayOfTrianglesPtr arr, TrianglePtr tri, long index)
 };
 int merge_arrays(ArrayOfTrianglesPtr dest, ArrayOfTrianglesPtr src, long dest_index)
 {
-    
+    if(!validate_array(dest) || !validate_array(dest) || !(dest_index >= 0))
+    {
+        return 0;
+    }
+
+    long i = 0;
+
+    if(validate_index_access(dest, dest_index))
+    {
+        fill: ;
+        for(i; i < src->capacity; i++)
+        {
+            if(dest->data_ptr[dest_index + i] != NULL)
+            {
+                goto shift;
+            }
+
+            dest->data_ptr[dest_index + i] = src->data_ptr[i];
+        }
+
+        free(src->data_ptr);
+        free(src);
+
+        return 1;
+    }
+
+    shift: ;
+    long shift = src->capacity - i;
+
+    if(extend_array_storage(dest, shift))
+    {
+        memmove(&dest->data_ptr[dest_index + src->capacity], &dest->data_ptr[dest_index + i], sizeof(TrianglePtr) * shift);
+        goto fill;
+    }
 }
 TrianglePtr get_at_index(ArrayOfTrianglesPtr arr, long index)
 {

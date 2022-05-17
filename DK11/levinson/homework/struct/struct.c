@@ -32,15 +32,24 @@ int main(void)
     TrianglePtr trn6 = create_triangle_LL(j_k, l_m);
     
     ArrayOfTrianglesPtr array1 = create_array(3);
-    print_array(array1);
+    // print_array(array1);
     insert_at_index(array1, trn1, 0);
     insert_at_index(array1, trn3, 2);
-    print_array(array1);
+    // print_array(array1);
     insert_at_index(array1, trn2, 1);
-    print_array(array1);
+    // print_array(array1);
     insert_at_index(array1, trn4, 7);
     print_array(array1);
-    printf("\n");
+    // printf("\n");
+
+    ArrayOfTrianglesPtr array2 = create_array(3);
+    insert_at_index(array2, trn4, 0);
+    insert_at_index(array2, trn5, 1);
+    insert_at_index(array2, trn6, 2);
+    print_array(array2);
+
+    merge_arrays(array1, array2, 4);
+    print_array(array1);
     
     free_line(s_a);
     free_line(s_b);
@@ -49,5 +58,7 @@ int main(void)
     free_triangle(trn3);
     free_triangle(trn4);
     free_triangle(trn5);
+    free_array(array1);
+    free_array(array2);
 }
 

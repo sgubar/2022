@@ -38,6 +38,7 @@ public:
 	{
 		cout << "\nMy name is " << authorName << ", I wrote the `" << bookName << "` book. It was written " << yearOfPubclishing << " and has " << numberOfPages << " pages. \n\n";
 	}
+	
 	~Book() // деструктор
 	{
 		cout << "program destroyed\n"; // отримаємо повідомлення деілька раз в залежності від того, скільки в нас об'єктів зроблено саме через КОНСТРУКТОР (а не функцію set)

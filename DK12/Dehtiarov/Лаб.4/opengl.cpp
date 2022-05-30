@@ -3,7 +3,8 @@
 #include <math.h>
 double zoom = 5; // масштаб
 double lr, ud;
-void ZoomKeys(int key, int x, int y) { // регулювання стрілками(ліво, право, вверх, вних) та клавішами PageUp(9 на NumLock) і PegeDown(3 на NumLock) масштаб
+/////////////////////////////////////////////////////
+void ZoomKeys(int key, int x, int y) { // регулювання стрілками(ліво, право, вверх, вних) та клавішами PageUp(9 на NumLock) і PegeDown(3 на NumLock) масштаб(5)
 	switch (key) {
 	case GLUT_KEY_PAGE_DOWN: // задаємо наближення
 		zoom = zoom + 0.1;

@@ -1,7 +1,7 @@
 #include <GL/glut.h> 
 #define _USE_MATH_DEFINES
 #include <math.h>
-double zoom = 1; // масштаб
+double zoom = 5; // масштаб
 double lr, ud;
 void ZoomKeys(int key, int x, int y) { // регулювання стрілками(ліво, право, вверх, вних) та клавішами PageUp(9 на NumLock) і PegeDown(3 на NumLock) масштаб
 	switch (key) {
@@ -31,8 +31,8 @@ void Graf() {
 	glBegin(GL_LINE_STRIP); 
 	glColor3f(0.0f, 1.0f, 0.0f); // колір графіка - синій
 	for (double t = -M_PI; t <= M_PI; t += 0.01) { // межі графіка
-		float x = (2 * a * cos(t) * (1 - cos(t)) / M_PI);
-		float y = (2 * a * sin(t) * (1 - cos(t)) / M_PI);
+		float x = (2 * a * cos(t) * (1 - cos(t)));
+		float y = (2 * a * sin(t) * (1 - cos(t)));
 		glVertex2f(x / zoom + lr, y / zoom + ud);
 	}
 	glEnd();

@@ -1,10 +1,9 @@
-#include<stdio.h>
-#include <math.h>
+#include <stdio.h>
 
-void main() {
-	input_size();
-	input_value();
-	output_matrix();
-	count();
-	output_matrix();
+#include"dk_tool.h"
+
+int main(){
+    input();
+    matrix_input();
+    matrix_output();
 }

@@ -5,9 +5,12 @@
 
 int main()
 {
-    int A = enterA();
+    /*int A = enterA();
     int B = enterB();
-    int C = enterC();
+    int C = enterC();*/
+    int A = enterABC();
+    int B = enterABC();
+    int C = enterABC();
     float Q;
     if (B == 0) {
         printf("ERROR: 'B' Cannot be zero");

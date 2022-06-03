@@ -4,7 +4,7 @@
 #include <math.h>
 #include "functions.h"
 
-int enterA() {
+/*int enterA() {
     int A;
     printf("Enter A: ");
     scanf("%d", &A);
@@ -23,6 +23,13 @@ int enterC() {
     printf("Enter C: ");
     scanf("%d", &C);
     return C;
+}*/
+
+int enterABC() {
+    int X;
+    printf("Enter A,B,C in turn: ");
+    scanf("%d", &X);
+    return X;
 }
 
 int factorial(int x) {

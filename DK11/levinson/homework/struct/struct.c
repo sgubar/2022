@@ -38,7 +38,8 @@ int main(void)
     // print_array(array1);
     insert_at_index(array1, trn2, 1);
     // print_array(array1);
-    insert_at_index(array1, trn4, 7);
+    insert_at_index(array1, trn4, 5);
+    printf("\nARRAY 1\n");
     print_array(array1);
     // printf("\n");
 
@@ -46,9 +47,11 @@ int main(void)
     insert_at_index(array2, trn4, 0);
     insert_at_index(array2, trn5, 1);
     insert_at_index(array2, trn6, 2);
+    printf("\nARRAY 2\n");
     print_array(array2);
 
     merge_arrays(array1, array2, 4);
+    printf("\nARRAY 1 (MERGED)\n");
     print_array(array1);
     
     free_line(s_a);

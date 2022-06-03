@@ -165,6 +165,6 @@ void print_array(ArrayOfTrianglesPtr arr)
         printf(" [%s] ", triangle_info(current));
     }
 
-    printf("\nArray capacity: %li;", arr->capacity);
+    printf("\nArray capacity: %li;\n", arr->capacity);
 };
 

@@ -80,10 +80,10 @@ char* triangle_info(TrianglePtr t)
     char* failed = "sprintf() has failed inside triangle_info() function.";
 
     if(!validate_triangle(t))
-        return "NULL";
+        return "                    NULL                   ";
 
     char* buffer = calloc(80, sizeof(char));
-    int result = sprintf(buffer, "Triangle defined by: a(%4.1f, %4.1f), b(%4.1f, %4.1f), c(%4.1f, %4.1f)", 
+    int result = sprintf(buffer, "a(%4.1f, %4.1f), b(%4.1f, %4.1f), c(%4.1f, %4.1f)", 
     t->pt_a->x, t->pt_a->y, t->pt_b->x, t->pt_b->y, t->pt_c->x, t->pt_c->y);
 
     if(result)

@@ -1,7 +1,7 @@
 /*
                     15 варіант
 
- ход деления - 0.1
+ ход деления - 0.05
  двигать график при помощи стрелок
  pageUp and pageDown выбор масштаба
 
@@ -16,28 +16,28 @@ double l, u;
 void ZoomKeys(int key, int x, int y) { // управление масштабом и положением
 	switch (key) {
 	case GLUT_KEY_LEFT:
-		l = l - 0.1;
+		l = l - 0.05;
 		break;
 	case GLUT_KEY_RIGHT:
-		l = l + 0.1;
+		l = l + 0.05;
 		break;
 	case GLUT_KEY_UP:
-		u = u + 0.1;
+		u = u + 0.05;
 		break;
 	case GLUT_KEY_DOWN:
-		u = u - 0.1;
+		u = u - 0.05;
 		break;
 	case GLUT_KEY_PAGE_DOWN:
-		zoom = zoom + 0.1;
+		zoom = zoom + 0.05;
 		break;
 	case GLUT_KEY_PAGE_UP:
-		zoom = zoom - 0.1;
+		zoom = zoom - 0.05;
 	}
 }
 
 void Graf() {
 	glBegin(GL_LINE_STRIP);
-	glColor3f(0.0, 1.0, 1.0);       // цвет самого графика
+	glColor3f(0.0, 1.0, 0.0);       // цвет самого графика
 	for (double t = -4*M_PI; t <= 4*M_PI; t += 0.01) {      // формула рассчета
 		float x = (exp(cos(t)) - 2*cos(4*t) + pow(sin(t/4), 3)) * cos(t);
 		float y = (exp(cos(t)) - 2*cos(4*t) + pow(sin(t/4), 3)) * sin(t);
@@ -48,7 +48,7 @@ void Graf() {
 
 void LineX() {                // цвет оси X
 	glBegin(GL_LINES);
-	glColor3f(1.0, 0.0, 1.0);
+	glColor3f(1.0, 1.0, 1.0);
 	glVertex2f(-1, 0);
 	glVertex2f(1, 0);
 	glEnd();
@@ -56,15 +56,15 @@ void LineX() {                // цвет оси X
 
 void LineXY(double x) {         // цвет делений на оси
 	glBegin(GL_LINES);
-	glColor3f(1.0, 0.0, 1.0);
-	glVertex2f(x, 0.025);
-	glVertex2f(x, -0.025);
+	glColor3f(1.0, 1.0, 1.0);
+	glVertex2f(x, 0.05);
+	glVertex2f(x, -0.05);
 	glEnd();
 }
 
 void LineY() {               // цвет оси Y
 	glBegin(GL_LINES);
-	glColor3f(1.0, 0.0, 1.0);
+	glColor3f(1.0, 1.0, 1.0);
 	glVertex2f(0, -1);
 	glVertex2f(0, 1);
 	glEnd();
@@ -72,9 +72,9 @@ void LineY() {               // цвет оси Y
 
 void LineYX(double y) {          // цвет делений на оси
 	glBegin(GL_LINES);
-	glColor3f(1.0, 0.0, 1.0);
-	glVertex2f(0.025, y);
-	glVertex2f(-0.025, y);
+	glColor3f(1.0, 1.0, 1.0);
+	glVertex2f(0.05, y);
+	glVertex2f(-0.05, y);
 	glEnd();
 }
 

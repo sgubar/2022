@@ -82,11 +82,11 @@ void display() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	Graf();
 	LineX();
-	for (double x = -1; x <= 1; x += 0.1) {
+	for (double x = -1; x <= 1; x += 0.05) {
 		LineXY(x);
 	}
 	LineY();
-	for (double y = -1; y <= 1; y += 0.1) {
+	for (double y = -1; y <= 1; y += 0.05) {
 		LineYX(y);
 	}
 	glutSwapBuffers();

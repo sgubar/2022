@@ -33,7 +33,7 @@ public:
 		return length;
 	}
 	
-	Book(int new_numberofpages, int new_yearofwriting, const char* new_authorname, const char* new_bookname)  // конструктор для нових об'єктів
+	Book(int new_numberofpages, int new_yearofwriting, const char* new_authorname, const char* new_bookname) // конструктор для нових об'єктів
 	{
 		numberofpages = new_numberofpages;
 		yearofwriting = new_yearofwriting;

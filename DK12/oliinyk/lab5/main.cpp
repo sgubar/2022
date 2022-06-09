@@ -8,11 +8,11 @@ private:
     int x, y;
 
 public:
-    void setCoordX(int new__X) {
-        x = new__X;
+    void setCoordX(int new__x) {
+        x = new__x;
     }
-    void setCoordY(int new__Y) {
-        y = new__Y;
+    void setCoordY(int new__y) {
+        y = new__y;
     }
 
     int *getCoords() {

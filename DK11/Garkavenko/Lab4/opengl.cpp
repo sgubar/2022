@@ -8,8 +8,7 @@
 //  Крок  поділок  осей 0.1
 //  Переміщення 0,1
 
-//Для переміщення графіка потрібно натиснути клавіші-стрілочки вниз та вверх,
-//для зміщення вниз на 0,1 та вверх а 0,1, відповідно.
+//Для переміщення графіка потрібно натиснути клавіші-стрілочки вниз, вверх, вліво, вправо
 
 double zoom = 2.3;
 double ox,oy;
@@ -38,12 +37,20 @@ void moveSchedule(int key, int x, int y)
 {
   switch(key)
   {
+  case GLUT_KEY_LEFT: // переміщення вліво на 0.1
+    ox = ox - 0.1;
+    glutPostRedisplay();
+    break;
+  case GLUT_KEY_RIGHT: // переміщення вправо на 0.1
+    ox = ox + 0.1;
+    glutPostRedisplay();
+    break;
   case GLUT_KEY_UP: // переміщення вверх на 0.1
-    zoom += 0.1;
+    oy = oy + 0.1;
     glutPostRedisplay();
     break;
   case GLUT_KEY_DOWN: // переміщення вниз на 0.1
-    zoom -= 0.1;
+    oy = oy - 0.1;
     glutPostRedisplay();
     break;
   }

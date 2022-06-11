@@ -15,9 +15,12 @@ public:
         y = new__y;
     }
 
-    int *getCoords() {
-        int coords[] = {x, y};
-        return coords;
+    int getX() {
+        return x;
+    }
+
+    int getY() {
+        return y;
     }
 
     Point(int new__x, int new__y) {
@@ -45,7 +48,7 @@ int main(void) {
     onePoint.setCoordX(-3);
     onePoint.setCoordY(9);
     onePoint.display();
-    std::cout << "Point coords: [" << onePoint.getCoords()[0] << ", " << onePoint.getCoords()[1]<< "]\n" << std::endl;
+    std::cout << "Point coords: [" << onePoint.getX() << ", " << onePoint.getY() << "]\n" << std::endl;
 
     Point twoPoint(0, -10);
     

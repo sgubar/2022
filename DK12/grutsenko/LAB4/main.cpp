@@ -83,8 +83,8 @@ void display() {
    axis(90); 
    
    for (float i = -1; i <= 1; i += 0.2/scale) {
-		Xmarks(i);
-      Ymarks(i);
+	Xmarks(i);
+	Ymarks(i);
 	}
    
 

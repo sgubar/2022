@@ -8,12 +8,12 @@ using namespace std;
 class Book
 {
 private:
-	int numberofpages, yearofwriting, bookname; // значення за замовчуванням
-	const char *author, *book; // значення за замовчуванням
+	int numberofpages, yearofwriting; // значення за замовчуванням
+	const char* author, * book; // значення за замовчуванням
 
 
 public:
-    // модифікатор, присвоєння параметрів
+	// модифікатор, присвоєння параметрів
 	void set_numberofpages(int new_numberofpages)
 	{
 		numberofpages = new_numberofpages;
@@ -31,9 +31,9 @@ public:
 		book = new_bookname;
 	}
 	// Повернення значень
-	int get_bookname()
+	const char* get_bookname()
 	{
-	    return bookname;
+		return book;
 	}
 	int get_lengthofbookname()
 	{
@@ -49,7 +49,7 @@ public:
 		book = new_bookname;
 		display();
 	}
-    // конструктор за замовчуванням
+	// конструктор за замовчуванням
 	Book()
 	{
 		numberofpages = 0;
@@ -71,7 +71,7 @@ public:
 
 int main() //  приклад роботи програми
 {
-    // перший спосіб задання інформації
+	// перший спосіб задання інформації
 	Book novelbook;
 	novelbook.set_numberofpages(20);
 	novelbook.set_yearofwriting(1908);
@@ -87,5 +87,9 @@ int main() //  приклад роботи програми
 	// приклад роботи конструктора копіювання
 	Book copyadventurebook = Book(adventurebook);
 	copyadventurebook.display();
+
+	Book testbook(220, 2022, "Avramenko", "ZNO");
+	cout << testbook.get_bookname() << " - the length of the book name" << endl; 
+
 	return 0;
 }

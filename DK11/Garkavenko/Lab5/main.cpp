@@ -8,7 +8,7 @@ using namespace std;
 class Book
 {
 private:
-	int numberofpages, yearofwriting; // значення за замовчуванням
+	int numberofpages, yearofwriting, bookname; // значення за замовчуванням
 	const char *author, *book; // значення за замовчуванням
 
 
@@ -31,6 +31,10 @@ public:
 		book = new_bookname;
 	}
 	// Повернення значень
+	int get_bookname()
+	{
+	    return bookname;
+	}
 	int get_lengthofbookname()
 	{
 		int length = strlen(book);
@@ -81,7 +85,6 @@ int main() //  приклад роботи програми
 	cout << adventurebook.get_lengthofbookname() << " - the length of the book name" << endl; // приклад роботи селектора
 
 	// приклад роботи конструктора копіювання
-	copyadventurebook.display();
 	Book copyadventurebook = Book(adventurebook);
 	copyadventurebook.display();
 	return 0;

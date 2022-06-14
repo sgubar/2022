@@ -142,6 +142,7 @@ int merge_arrays(ArrayOfTrianglesPtr dest, ArrayOfTrianglesPtr src, long dest_in
     if(extend_array_storage(dest, shift))
     {
         memmove(&dest->data_ptr[dest_index + src->capacity], &dest->data_ptr[dest_index + i], sizeof(TrianglePtr) * shift);
+        memset(&dest->data_ptr[dest_index + i], 0, sizeof(TrianglePtr) * shift);
         goto fill;
     }
 }

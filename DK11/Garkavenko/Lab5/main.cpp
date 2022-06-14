@@ -9,11 +9,11 @@ class Book
 {
 private:
 	int numberofpages, yearofwriting; // значення за замовчуванням
-	const char *author, *book; // значення за замовчуванням
+	const char* author, * book; // значення за замовчуванням
 
 
 public:
-    // модифікатор, присвоєння параметрів
+	// модифікатор, присвоєння параметрів
 	void set_numberofpages(int new_numberofpages)
 	{
 		numberofpages = new_numberofpages;
@@ -31,6 +31,10 @@ public:
 		book = new_bookname;
 	}
 	// Повернення значень
+	const char* get_bookname()
+	{
+		return book;
+	}
 	int get_lengthofbookname()
 	{
 		int length = strlen(book);
@@ -45,7 +49,7 @@ public:
 		book = new_bookname;
 		display();
 	}
-    // конструктор за замовчуванням
+	// конструктор за замовчуванням
 	Book()
 	{
 		numberofpages = 0;
@@ -67,7 +71,7 @@ public:
 
 int main() //  приклад роботи програми
 {
-    // перший спосіб задання інформації
+	// перший спосіб задання інформації
 	Book novelbook;
 	novelbook.set_numberofpages(20);
 	novelbook.set_yearofwriting(1908);
@@ -81,8 +85,11 @@ int main() //  приклад роботи програми
 	cout << adventurebook.get_lengthofbookname() << " - the length of the book name" << endl; // приклад роботи селектора
 
 	// приклад роботи конструктора копіювання
-	copyadventurebook.display();
 	Book copyadventurebook = Book(adventurebook);
 	copyadventurebook.display();
+
+	Book testbook(220, 2022, "Avramenko", "ZNO");
+	cout << testbook.get_bookname() << " - the length of the book name" << endl; 
+
 	return 0;
 }

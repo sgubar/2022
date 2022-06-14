@@ -1,6 +1,6 @@
 #include "tree.h"
 
-int main(void)
+int main(int argc, char const *argv[])
 {
     TreePtr tree = create_tree();
     insert_element(tree, 5);
@@ -10,8 +10,9 @@ int main(void)
     insert_element(tree, 8);
     insert_element(tree, 10);
 
+    print_tree_inorder(tree->root);
+
     delete_subtree(&tree->root->left);
     delete_tree(&tree);
-
     return 0;
 }

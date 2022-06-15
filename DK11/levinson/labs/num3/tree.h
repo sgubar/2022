@@ -21,5 +21,5 @@ NodePtr search_element(TreePtr, double);
 NodePtr insert_element(TreePtr, double);
 void delete_subtree(NodePtr*);
 void delete_tree(TreePtr*);
-void delete_element(TreePtr, NodePtr*);
-void print_tree_inorder(NodePtr root);
+void delete_element(TreePtr, NodePtr);
+void print_tree(TreePtr);

@@ -2,7 +2,7 @@
 
 #pragma region Internal_Utility
 
-NodePtr create_node(double value, NodePtr left, NodePtr right)
+NodePtr _create_node(double value, NodePtr left, NodePtr right)
 {
     NodePtr new = calloc(1, sizeof(Node));
 
@@ -12,7 +12,7 @@ NodePtr create_node(double value, NodePtr left, NodePtr right)
     
     return new;
 }
-NodePtr search_parent(TreePtr tree, NodePtr node)
+NodePtr _search_parent(TreePtr tree, NodePtr node)
 {
     double sval = node->value;
     NodePtr current = tree->root;
@@ -21,12 +21,12 @@ NodePtr search_parent(TreePtr tree, NodePtr node)
     {
         if(current == NULL)
         {
-            printf("No element containing value '%2.2f' has been found.", sval);
+            printf("\nNo element containing value '%2.2f' has been found.\n", sval);
             return NULL;
         }
-        if(current->value == sval)
+        else if (current->value == sval)
         {
-            printf("Singleton tree passed to search_parent.");
+            printf("\nTree root passed to _search_parent() function.\n");
             return NULL;
         }
         else if(current->left->value == sval || current->right->value == sval)
@@ -43,25 +43,85 @@ NodePtr search_parent(TreePtr tree, NodePtr node)
         }
     } 
 }
-void delete_recursive(NodePtr root)
+void _delete_recursive(NodePtr root)
 {
     if(root == NULL)
     {
         return;
     }
 
-    delete_recursive(root->left);
-    delete_recursive(root->right);
+    _delete_recursive(root->left);
+    _delete_recursive(root->right);
 
     if(root->left == NULL && root->right == NULL)
     {
         free(root);
     }
 }
-NodePtr reconstruct_branch(NodePtr node)
+void _print_inorder_recursive(NodePtr root)
 {
-    // this function takes in pointer to a node that
+    if(root == NULL)
+    {
+        return;
+    }
+    if(root->left == NULL && root->right == NULL)
+    {
+        printf("[ %2.2f ] ", root->value);
+        return;
+    }
+
+    _print_inorder_recursive(root->left);
+    printf("[ %2.2f ] ", root->value);
+    _print_inorder_recursive(root->right);
+
+    printf("\n");
 }
+NodePtr _inorder_successor_sub(NodePtr node, NodePtr node_parent)
+{
+    NodePtr successor_parent = node;
+    NodePtr successor = node->right;
+    NodePtr leaf = successor->left;
+
+    while(1)
+    {
+        if(leaf != NULL)
+        {
+            successor_parent = successor;
+            successor = leaf;
+            leaf = leaf->left;
+        }
+        else if (successor_parent == node)
+        {
+            successor->left = node->left;
+            break;
+        }
+        else
+        {
+            successor_parent->left = successor->right;
+            successor->right = node->right;
+            successor->left = node->left;
+            break;
+        }
+    }
+
+    if(node_parent == NULL)
+    {
+        // root of the tree is being deleted, tree->rood will be reassigned in delete_element()
+    }
+    else if(node_parent->left == node)
+    {
+        node_parent->left = successor;
+    }
+    else
+    {
+        node_parent->right = successor;
+    }
+
+    free(node);
+
+    return successor;
+}
+
 #pragma endregion
 
 TreePtr create_tree()
@@ -105,7 +165,7 @@ NodePtr insert_element(TreePtr tree, double ival)
     {
         if(curr == NULL)
         {
-            *parent = create_node(ival, NULL, NULL);
+            *parent = _create_node(ival, NULL, NULL);
             return curr;
         }
         else if(curr->value == ival)
@@ -133,22 +193,32 @@ void delete_tree(TreePtr* tree)
 }
 void delete_subtree(NodePtr* ptr)
 {
-    delete_recursive(*ptr);
+    _delete_recursive(*ptr);
     *ptr = NULL;
 }
-void delete_element(TreePtr tree, NodePtr *n)
+void delete_element(TreePtr tree, NodePtr node)
 {
-    NodePtr node = *n;
+    NodePtr parent = _search_parent(tree, node);
 
-    if(node->left == NULL && node->right == NULL)
+    if(node == tree->root)
     {
-        free(node);
-        node = NULL;
+        tree->root = _inorder_successor_sub(node, parent);
     }
-    if(node->left == NULL && node->right != NULL)
+    else if(node->left == NULL && node->right == NULL)
     {
-        NodePtr parent = search_parent(tree, node);
-
+        if(parent->left->value == node->value)
+        {
+            parent->left = NULL;
+        }
+        else
+        {
+            parent->right = NULL;
+        }
+        
+        free(node);
+    }
+    else if(node->left == NULL && node->right != NULL)
+    {
         if(parent->left->value == node->value)
         {
             parent->left = node->right;
@@ -159,12 +229,9 @@ void delete_element(TreePtr tree, NodePtr *n)
         }
 
         free(node);
-        node = NULL;
     }
-    if(node->left != NULL && node->right == NULL)
+    else if(node->left != NULL && node->right == NULL)
     {
-        NodePtr parent = search_parent(tree, node);
-
         if(parent->left->value == node->value)
         {
             parent->left = node->left;
@@ -173,23 +240,22 @@ void delete_element(TreePtr tree, NodePtr *n)
         {
             parent->right = node->left;
         }
+
+        free(node);
     }
-
-
+    else
+    {
+        _inorder_successor_sub(node, parent);
+    }
 }
-void print_tree_inorder(NodePtr root)
+void print_tree(TreePtr tree)
 {
-    if(root == NULL)
+    if(tree == NULL)
     {
+        printf("\nNULL passed to print_tree.\n");
         return;
     }
-    if(root->left == NULL && root->right == NULL)
-    {
-        printf("[ %2.2f ] ", root->value);
-        return;
-    }
-
-    print_tree_inorder(root->left);
-    printf("[ %2.2f ] ", root->value);
-    print_tree_inorder(root->right);
-}
+    printf("Tree: \n");
+    _print_inorder_recursive(tree->root);
+    printf("\n");
+};

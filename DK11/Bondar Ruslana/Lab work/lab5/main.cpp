@@ -13,20 +13,17 @@ using namespace std;
 class Sensor
 {
 private:
-    int *values, count, time; // значення за замовчуванням
+    int *values, count; // значення за замовчуванням
+    float time;
 
 public:
-    void set_Values(int new__values[]) // модифікатор
+    void set_Values(int new__values[], int new__count) // модифікатор
     {
+        count = new__count;
         values = new__values;
     }
 
-    void set_Count(int new__count)
-    {
-        count = new__count;
-    }
-
-    void set_Time(int new__time)
+    void set_Time(float new__time)
     {
         time = new__time;
     }
@@ -38,7 +35,7 @@ public:
         return values[index];
     }
 
-    Sensor(int *new__values, int new__count, int new__time) // конструктор для нових об'єктів
+    Sensor(int *new__values, int new__count, float new__time) // конструктор для нових об'єктів
     {
         values = new__values;
         count = new__count;
@@ -71,15 +68,17 @@ int main(void) //  приклад роботи програми
 {
     Sensor Sensor1; // перший спосіб задання інформації
     int values[] = {1, 7, 34, 6, 21, 12};
-    Sensor1.set_Values(values);
-    Sensor1.set_Count(sizeof(values) / sizeof(values[0]));
-    Sensor1.set_Time(765);
+    Sensor1.set_Values(values, sizeof(values) / sizeof(values[0]));
+    Sensor1.set_Time(76.5);
     Sensor1.display();
     int index = 4;
     cout << "Index " << index << " is the value \"" << Sensor1.get_Value(index) << "\"\n" << endl;// приклад роботи селектора
 
     int values2[] = {11, 0, -4, 2}; // другий спосіб задання інформації
-    Sensor Sensor2(values2, sizeof(values2) / sizeof(values2[0]), 100);
+    Sensor Sensor2(values2, sizeof(values2) / sizeof(values2[0]), 10.657);
+
+    Sensor copy__Sensor2 = Sensor(Sensor1);
+    copy__Sensor2.display();
 
 
     return 1;

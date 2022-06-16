@@ -29,7 +29,7 @@ NodePtr _search_parent(TreePtr tree, NodePtr node)
             printf("\nTree root passed to _search_parent() function.\n");
             return NULL;
         }
-        else if(current->left->value == sval || current->right->value == sval)
+        else if((current->left != NULL && current->left->value == sval) || (current->right != NULL && current->right->value == sval))
         {
             return current;
         }
@@ -45,18 +45,16 @@ NodePtr _search_parent(TreePtr tree, NodePtr node)
 }
 void _delete_recursive(NodePtr root)
 {
-    if(root == NULL)
+    if(root->left != NULL)
     {
-        return;
+        _delete_recursive(root->left);
     }
-
-    _delete_recursive(root->left);
-    _delete_recursive(root->right);
-
-    if(root->left == NULL && root->right == NULL)
+    if(root->right != NULL)
     {
-        free(root);
+        _delete_recursive(root->right);
     }
+    
+    free(root);
 }
 void _print_inorder_recursive(NodePtr root)
 {
@@ -158,6 +156,11 @@ NodePtr search_element(TreePtr tree, double sval)
 }
 NodePtr insert_element(TreePtr tree, double ival)
 {
+    if(tree == NULL)
+    {
+        return NULL;
+    }
+    
     NodePtr *parent = &tree->root;
     NodePtr curr = tree->root;
 
@@ -187,14 +190,35 @@ NodePtr insert_element(TreePtr tree, double ival)
 }
 void delete_tree(TreePtr* tree)
 {
-    delete_subtree(&((*tree)->root));
+    _delete_recursive((*tree)->root);
     free(*tree);
     *tree = NULL;
 }
-void delete_subtree(NodePtr* ptr)
+void delete_subtree(TreePtr* tree, NodePtr ptr)
 {
-    _delete_recursive(*ptr);
-    *ptr = NULL;
+    NodePtr parent = _search_parent(*tree, ptr);
+
+    if(parent == NULL && ptr == (*tree)->root)
+    {
+        delete_tree(tree);
+        return;
+    }
+    else if(parent == NULL && ptr != (*tree)->root)
+    {
+        printf("\nNode passed to delete_subtree() does not belong to the tree passed to delete_subtree().\n");
+        return;
+    }
+
+    _delete_recursive(ptr);
+
+    if(parent->left == ptr)
+    {
+        parent->left = NULL;
+    }
+    else
+    {
+        parent->right = NULL;
+    }
 }
 void delete_element(TreePtr tree, NodePtr node)
 {

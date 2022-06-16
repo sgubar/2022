@@ -1,3 +1,3 @@
 2 Варіант  
-singly liked list  
+singly linked list  
 float

@@ -28,6 +28,8 @@ ListPtr init_list(char* elements)
 
     if(list == NULL || curr == NULL || len < 1)
     {
+        free(list);
+        free(curr); 
         return NULL;
     }
 
@@ -101,8 +103,8 @@ int delete_nth(ListPtr list, int index)
 
     return 1;
 };
-// this function sews two lists at a given joint element, thus src->first becomes [dest_index + 1]`th element of dest list,
-// while the rest of dest (meaning elements starting with the original [dest_index + 1]`th element) gets appended to the end of resulting list
+// this function sews two lists at a given joint element, thus src->first becomes [dest_index]`th element of dest list,
+// while the rest of dest (meaning elements starting with the original [dest_index]`th element) gets appended to the end of resulting list
 int merge_lists(ListPtr src, ListPtr dest, int dest_index)
 {
     if(src == NULL)
@@ -111,8 +113,8 @@ int merge_lists(ListPtr src, ListPtr dest, int dest_index)
         return 0;
     }
 
-    ElementPtr joint = get_nth(dest, dest_index);
     ElementPtr prev = get_nth(dest, dest_index - 1);
+    ElementPtr joint = get_nth(dest, dest_index);
 
     if(joint == NULL && prev == NULL)
     {

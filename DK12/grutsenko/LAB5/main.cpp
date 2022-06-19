@@ -78,7 +78,7 @@ public:
 
 int main() {
     Sensor mySensor1;
-    mySensor1.printSensor(); //check for default construction
+    mySensor1.printSensor(); //default constructor
 
     int values[] = {557, 23, 657, -23, -6, 4512};
 
@@ -86,9 +86,12 @@ int main() {
     mySensor1.setSize(sizeof(values) / sizeof(values[0]));    
     mySensor1.setGainTime(3.54);
 
-    Sensor mySensor2(NULL, 7, 8.77);
+    Sensor mySensor2(NULL, 7, 8.77); // normal constructor
     cout << "Sensor2: " << endl;
     mySensor2.setValuesManual();  
+
+    Sensor mySensor2_copy = Sensor(mySensor2); //copy constructor
+
 
     cout << "Sensor1: " << endl;
     mySensor1.printSensor();
@@ -98,6 +101,10 @@ int main() {
     
     cout << "Sensor2: " << endl;
     mySensor2.printSensor();
+
+    cout << "Copy of Sensor2: " << endl;
+    mySensor2_copy.printSensor();
+
 
     return 1;
 }

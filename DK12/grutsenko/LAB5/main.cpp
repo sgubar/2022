@@ -1,37 +1,55 @@
 #include <iostream>
 #include <string.h>
 
+using namespace std;
+
 class Sensor {
 private:
-    int *storage, size, gainTime;
+    int *storage;
+    int size;
+    float gainTime;
 
 public:
-    /* constructor (auto) */
+    /* default constructor */
     Sensor() {
-        cout << "Sensor is created" << endl;
+        storage = NULL;
+        size = 0;
+        gainTime = 0;
     }
 
-    /* destructor (auto) */
+    /* normal constructor */
+    Sensor(int *values, int amount, float time) {
+        storage = values;
+        size = amount;
+        gainTime = time;
+    }      
+
+    /* destructor */
     ~Sensor() {
-        cout << "Sensor is deleted" << endl;
+        if (storage != nullptr)				
+            delete storage;        
     }
 
+     /* modificators */
     void setSize(int amount) {
         size = amount;
     }    
 
-    void setValues(int values[]) {
+    void setValues(int *values) {
+        if (storage != nullptr)				
+            delete storage;        
         storage = values;
     }
 
     void setValuesManual() {
-        cout << "Enter " << size <<  " values: " << endl;
+        storage = new int[size];
+        cout << "Enter " << size << " values" << endl;
         for (int i = 0; i < size; i++) {
             cin >> storage[i];
         }
     }
 
-    void setGainTime(int time) {
+    void setGainTime(float time) {
         gainTime = time;
     }
 
@@ -44,34 +62,49 @@ public:
     }   
 
     void printValues() {
-            cout << "Values:\n";
             for (int i = 0; i < size; i++) {
                 cout << "[" << i << "]: " << storage[i] << endl;
             }
-            cout << "Amount of elements in array: " << size << "\nGain time: " << gainTime << endl;
         }
+
+     void printSensor() {
+        cout << "Values: " << endl;
+        printValues();
+        cout << "Array size: " << size << endl;
+        cout << "Gain time: " << gainTime << endl;
+     }
 
 };
 
 int main() {
-    Sensor mySensor1, mySensor2;    
+    Sensor mySensor1;
+    mySensor1.printSensor(); //default constructor
+
     int values[] = {557, 23, 657, -23, -6, 4512};
 
-    mySensor1.setSize(sizeof(values) / sizeof(values[0]));
     mySensor1.setValues(values);
-    mySensor1.setGainTime(200);
+    mySensor1.setSize(sizeof(values) / sizeof(values[0]));    
+    mySensor1.setGainTime(3.54);
 
-    mySensor2.setSize(5);
-    mySensor2.setValuesManual();    
-    mySensor2.setGainTime(100);
+    Sensor mySensor2(NULL, 7, 8.77); // normal constructor
+    cout << "Sensor2: " << endl;
+    mySensor2.setValuesManual();  
+
+    Sensor mySensor2_copy = Sensor(mySensor2); //copy constructor
+
 
     cout << "Sensor1: " << endl;
-    mySensor1.printValues();  
+    mySensor1.printSensor();
+
     cout << "Value at index [" << 4 << "]: " << mySensor1.getValueAtIndex(4) << endl;
     cout << "Value at index [" << 7 << "]: " << mySensor1.getValueAtIndex(7) << endl;
     
     cout << "Sensor2: " << endl;
-    mySensor2.printValues();
+    mySensor2.printSensor();
+
+    cout << "Copy of Sensor2: " << endl;
+    mySensor2_copy.printSensor();
+
 
     return 1;
 }

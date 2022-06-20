@@ -2,18 +2,28 @@
 
 #pragma region Internal_Utility
 
-NodePtr _create_node(double value, NodePtr left, NodePtr right)
+NodePtr _create_node(double value)
 {
     NodePtr new = calloc(1, sizeof(Node));
 
+    if(new == NULL)
+    {
+        printf("calloc() has failed to allocate memory.");
+        return new;
+    }
+
     new->value = value;
-    new->left = left;
-    new->right = right;
     
     return new;
 }
 NodePtr _search_parent(TreePtr tree, NodePtr node)
 {
+    if(tree == NULL || node == NULL)
+    {
+        printf("Invalid input passed to _search_parent().");
+        return NULL;
+    }
+
     double sval = node->value;
     NodePtr current = tree->root;
 
@@ -45,6 +55,10 @@ NodePtr _search_parent(TreePtr tree, NodePtr node)
 }
 void _delete_recursive(NodePtr root)
 {
+    if(root == NULL)
+    {
+        return;
+    }
     if(root->left != NULL)
     {
         _delete_recursive(root->left);
@@ -76,8 +90,63 @@ void _print_inorder_recursive(NodePtr root)
 }
 NodePtr _inorder_successor_sub(NodePtr node, NodePtr node_parent)
 {
+    if(node == NULL)
+    {
+        printf("NULL passed as node argument to _inorder_successor_sub, cannot substitute NULL.");
+        return NULL;
+    }
+
     NodePtr successor_parent = node;
-    NodePtr successor = node->right;
+    NodePtr successor;
+
+    if(node->left == NULL && node->right != NULL)
+    {
+        successor = node->right;
+
+        if(node_parent->left->value == node->value)
+        {
+            node_parent->left = successor;
+        }
+        else
+        {
+            node_parent->right = successor;
+        }
+
+        free(node);
+        return successor;
+    }
+    else if(node->left != NULL && node->right == NULL)
+    {
+        successor = node->left;
+
+        if(node_parent->left->value == node->value)
+        {
+            node_parent->left = successor;
+        }
+        else
+        {
+            node_parent->right = successor;
+        }
+
+        free(node);
+        return successor;
+    }
+    else if(node->left == NULL && node->right == NULL)
+    {
+        if(node_parent->left->value == node->value)
+        {
+            node_parent->left = NULL;
+        }
+        else
+        {
+            node_parent->right = NULL;
+        }
+        
+        free(node);
+        return NULL;
+    }
+
+    successor = node->right;
     NodePtr leaf = successor->left;
 
     while(1)
@@ -130,13 +199,18 @@ TreePtr create_tree()
 }
 NodePtr search_element(TreePtr tree, double sval)
 {
+    if(tree == NULL)
+    {
+        printf("NULL passed to search_element() function.");
+    }
+    
     NodePtr current = tree->root;
 
     while (1)
     {
         if(current == NULL)
         {
-            printf("Empty tree passed to search_element.");
+            printf("Element %2.2lf not found.", sval);
             return NULL;
         }
 
@@ -168,7 +242,7 @@ NodePtr insert_element(TreePtr tree, double ival)
     {
         if(curr == NULL)
         {
-            *parent = _create_node(ival, NULL, NULL);
+            *parent = _create_node(ival);
             return curr;
         }
         else if(curr->value == ival)
@@ -203,7 +277,7 @@ void delete_subtree(TreePtr* tree, NodePtr ptr)
         delete_tree(tree);
         return;
     }
-    else if(parent == NULL && ptr != (*tree)->root)
+    else if(parent == NULL)
     {
         printf("\nNode passed to delete_subtree() does not belong to the tree passed to delete_subtree().\n");
         return;
@@ -227,45 +301,6 @@ void delete_element(TreePtr tree, NodePtr node)
     if(node == tree->root)
     {
         tree->root = _inorder_successor_sub(node, parent);
-    }
-    else if(node->left == NULL && node->right == NULL)
-    {
-        if(parent->left->value == node->value)
-        {
-            parent->left = NULL;
-        }
-        else
-        {
-            parent->right = NULL;
-        }
-        
-        free(node);
-    }
-    else if(node->left == NULL && node->right != NULL)
-    {
-        if(parent->left->value == node->value)
-        {
-            parent->left = node->right;
-        }
-        else
-        {
-            parent->right = node->right;
-        }
-
-        free(node);
-    }
-    else if(node->left != NULL && node->right == NULL)
-    {
-        if(parent->left->value == node->value)
-        {
-            parent->left = node->left;
-        }
-        else
-        {
-            parent->right = node->left;
-        }
-
-        free(node);
     }
     else
     {

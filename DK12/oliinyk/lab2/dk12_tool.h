@@ -1,17 +1,27 @@
 #ifndef _DK12_TOOL_H
 #define _DK12_TOOL_H
 
+typedef struct tag_node {
+	char *value;
+	struct tag_node *next;
+} Node;
 
-int checkNumber(int count);
-void checkMaxCount(int count);
+typedef struct tag_list {
+	Node *head;
+	Node *tail;
+} List;
 
-int getCount(void);
-void getWords(int count);
 
-void sortArray(int count);
+Node *createNode(char *value);
+void destroyNode(Node *node);
 
-void printArray(int count);
-void printMaxLettersWords(int count);
+List *createWordsList(void);
+void destroyWordsList(List *list);
+
+void addNodeToWordsList(List *list, char *value);
+
+void sortWords(List *list);
+void printWordsList(List *list);
 
 
 #endif

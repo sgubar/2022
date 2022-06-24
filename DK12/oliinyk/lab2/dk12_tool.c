@@ -1,93 +1,96 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include "dk12_tool.h"
 
-
-char wordsArray[100][100];
-int max = 0;
-
-
-int checkNumber(int count) {
-    if (count <= 100) return 1;
-    printf("Must int and max 100!\n");
-    exit(0);
+Node *createNode(char *value) {
+    Node *tmp = (Node *)malloc(sizeof(Node));
+    tmp->value = value;
+    tmp->next = NULL;
+    return tmp;
 }
 
-void checkMaxCount(int count) {
-    if (count > max) max = count;
+void destroyNode(Node *node) {
+    free(node);
 }
 
-int getCount(void) {
-    int count;
-    printf("Input count words (max 100): ");
-    scanf("%d", &count);
-    checkNumber(count);
-    return count;
+List *createWordsList(void) {
+    List *tmp = (List *)malloc(sizeof(List));
+    tmp->head = NULL;
+    tmp->tail = NULL;
+    return tmp;
 }
 
-void getWords(int count) {
-    printf("Input words:\n");
-    for (int i = 0; i < count; i++) {
-        scanf("%s", &wordsArray[i][0]);
+void destroyWordsList(List *list) {
+    Node *tmp = NULL;
+    while (list->head != NULL) {
+        tmp = list->head;
+        list->head = list->head->next;
+        destroyNode(tmp);
     }
-    printf("\n");
+    free(list);
 }
 
-void sortArray(int count) {
-    int sortComplete;
+void addNodeToWordsList(List *list, char *value) {
+    if (list->head == NULL) {
+        list->head = createNode(value);
+        list->tail = list->head;
+        return;
+    }
 
-    for (int i = count - 1; i >= 0; i--) {
-        sortComplete = 1;
-        for (int j = 0; j < i; j++) {
-            checkMaxCount(strlen(wordsArray[j]));
-            if (strlen(wordsArray[j]) > strlen(wordsArray[j + 1])) {
-                char tmp[strlen(wordsArray[j])];
-                char tmp2[strlen(wordsArray[j + 1])];
+    Node *curr = list->head;
+    while (curr->next != NULL)
+        curr = curr->next;
+    curr->next = createNode(value);
+    list->tail = curr->next;
+}
 
-                for (int k = 0; k <= strlen(wordsArray[j]); k++) {
-                    tmp[k] = wordsArray[j][k];
-                }
-                for (int k = 0; k <= strlen(wordsArray[j + 1]); k++) {
-                    tmp2[k] = wordsArray[j + 1][k];
-                }
+void sortWords(List *list) {
+    Node *p1 = list->head;
+    Node *p2 = list->head->next;
 
-                for (int k = 0; k <= strlen(wordsArray[j]); k++) {
-                    wordsArray[j][k] = '\0';
-                }
-                for (int k = 0; k <= strlen(wordsArray[j + 1]); k++) {
-                    wordsArray[j + 1][k] = '\0';
-                }
+    char *tmp;
+    int reply = 0;
 
-                for (int k = 0; k <= strlen(wordsArray[j]); k++) {
-                    wordsArray[j][k] = tmp2[k];
-                }
-                for (int k = 0; k <= strlen(wordsArray[j + 1]); k++) {
-                    wordsArray[j + 1][k] = tmp[k];
-                }
+    int onemore = 0;
 
-                sortComplete = 0;
+    while (p2 != NULL)
+    {
+        if (strlen(p1->value) > strlen(p2->value)) {
+            onemore = 1;
+            tmp = p1->value;
+            p1->value = p2->value;
+            p2->value = tmp;
+        }
+        p1 = p1->next;
+        p2 = p2->next;
+        if (p2 == NULL && onemore == 1) {
+            onemore = 0;
+            if (reply == 0 && onemore == 0) {
+                printf("Max long word is: %s\n\n", p1->value);
+                reply = 1;
             }
+            p1 = list->head;
+            p2 = list->head->next;
         }
-        if (sortComplete == 1) break;
     }
-    printf("\n");
 }
 
-
-void printArray(int count) {
-    printf("Sorted array:\n");
-    for (int i = 0; i < count; i++) {
-        printf("%s ", wordsArray[i]);
+void printWordsList(List *list) {
+    if (list->head == NULL) {
+        printf("EMPTY\n");
+        return;
     }
+
+    Node *curr = list->head;
+    printf("[");
+    while (curr != NULL) {
+        printf("%s ", curr->value);
+        curr = curr->next;
+        if (curr != NULL) {
+            printf(", ");
+        }
+    }
+    printf("]");
     printf("\n\n");
-}
-
-void printMaxLettersWords(int count) {
-    printf("Max count %d in array:\n", max);
-    for (int i = 0; i < count; i++) {
-            if (strlen(wordsArray[i]) == max) {
-                printf("%s ", wordsArray[i]);
-        }
-    }
-    printf("\n");
 }

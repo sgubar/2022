@@ -9,42 +9,42 @@ class Text
 
 public:
 
-	void setText(const char* new_text) // модифікатор
+	void setText(const char* new_text) // РјРѕРґРёС„С–РєР°С‚РѕСЂ
 	{
 		txt = new_text;
 		len = strlen(new_text);
 	}
 
-	int getLengt() // селектор
+	int getLengt() // СЃРµР»РµРєС‚РѕСЂ
 	{
 		int len = strlen(txt);
 		return len;
 	}
 
-	Text(const char* text) // конструктор
+	Text(const char* text) // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 	{
 		len = strlen(text);
 		txt = text;
 	}
 
-	Text() // конструктор за замовчуванням
+	Text() // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ Р·Р° Р·Р°РјРѕРІС‡РµРЅРЅСЏРј
 	{
 		txt = "DEFAULT TEXT";
 		len = strlen(txt);
 	}
 
-	Text(const Text& text): // конструктор копіювання
+	Text(const Text& text): // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїС–СЋРІР°РЅРЅСЏ
 		txt(text.txt), len(text.len)
 	{
 		std::cout << "Text copied!\n";
 	}
 
-	~Text() // деструктор
+	~Text() // РґРµСЃС‚СЂСѓРєС‚РѕСЂ
 	{
 		std::cout << "\nText deleted!";
 	}
 
-	void output() // виведення тексту
+	void output() // РІРёРІРµРґРµРЅРЅСЏ С‚РµРєСЃС‚Сѓ
 	{
 		std::cout << txt << " - (" << len << ")\n";
 	}
@@ -53,11 +53,11 @@ public:
 int main()
 {
 	int len;
-	Text txt1; // конструктор за замовченням
-	Text txt2("COPIED TEXT"); // конструктор
-	Text txt3(txt2); // конструктор копіювання
-	txt2.setText("REPLACED TEXT"); // модифікатор
-	len = txt3.getLengt(); // селектор
+	Text txt1; // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ Р·Р° Р·Р°РјРѕРІС‡РµРЅРЅСЏРј
+	Text txt2("COPIED TEXT"); // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
+	Text txt3(txt2); // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїС–СЋРІР°РЅРЅСЏ
+	txt2.setText("REPLACED TEXT"); // РјРѕРґРёС„С–РєР°С‚РѕСЂ
+	len = txt3.getLengt(); // СЃРµР»РµРєС‚РѕСЂ
 	std::cout << "Get lengt copied text: " << len << "\n\n";
 	txt1.output();
 	txt2.output();

@@ -15,11 +15,11 @@ public:
         y = new__y;
     }
 
-    int get_X() { // селектор
+    float get_X() { 
         return x;
     }
 
-    int get_Y() {
+    float get_Y() {
         return y;
     }
 

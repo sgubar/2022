@@ -2,7 +2,7 @@
 
 int main(void)
 {
-    checkBinaryNumber();
-    binaryToInt();
-    printResult();
+    int binaryNumber = getBinaryNumber();
+    int result = binaryToInt(binaryNumber);
+    printResult(result);
 }

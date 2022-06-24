@@ -1,12 +1,11 @@
 #ifndef _DK12_TOOL_H
 #define _DK12_TOOL_H
 
+int getBinaryNumber(void);
 
-void checkBinaryNumber(void);
+int binaryToInt(int number);
 
-void binaryToInt(void);
-
-void printResult(void);
+void printResult(int result);
 
 
 #endif

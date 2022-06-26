@@ -11,11 +11,11 @@ double abs_extend(double a)
     else return a;
 }
 
-double sigma_sum(int a, int b, double expression)
+double sigma_sum(int a, int b)
 {
     double res = 0;
     for(int a; a <= b; a++) {
-        res += expression;     
+        res += pow(2, a);     
     }
     return res;
 }

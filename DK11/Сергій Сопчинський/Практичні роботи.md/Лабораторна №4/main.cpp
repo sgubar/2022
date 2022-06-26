@@ -95,7 +95,7 @@ int main(int argc, char* argv[])
 	glutInitDisplayMode(GLUT_RGBA | GLUT_SINGLE);
 	glutInitWindowPosition(200, 50);
 	glutInitWindowSize(700, 700);
-	glutCreateWindow("Variant 15");
+	glutCreateWindow("Variant 14");
 	glutSpecialFunc(ZoomKeys);
 	glutDisplayFunc(display);
 	glutMainLoop();

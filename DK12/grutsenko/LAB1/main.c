@@ -17,7 +17,7 @@ int main()
         C = get_double("C: ");
     } while (C == 0);
     
-    Q = (abs_extend(A*C-B) / pow(C, 3)) * sigma_sum(D, A, pow(2, D));
+    Q = (abs_extend(A*C-B) / pow(C, 3)) * sigma_sum(D, A);
 
     printf("Q = %lf\n", Q);
 

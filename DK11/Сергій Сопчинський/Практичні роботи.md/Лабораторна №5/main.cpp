@@ -46,6 +46,16 @@ public:
 		author = "...";
 		book = "...";
 	}
+	void display() // виведення
+	{
+		cout << "Hello, my name is " << author << ", I am the author of `" << book << "`, which was written in " << yearofwriting << ".It was " << numberofpages << " pages.\n";
+	}
+	
+	~Book() // деструктор
+	{
+		cout << "destroyed\n"; // отримаемо повідомлення декілька разів(залежить від кількості об'єктів зроблених через конструктор)
+	}
+}
 int main() //  приклад роботи програми	
 {
 	Book novelbook; // перший спосіб задання інформації

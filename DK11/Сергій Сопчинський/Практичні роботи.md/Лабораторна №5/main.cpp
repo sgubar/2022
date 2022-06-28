@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string.h>
 using namespace std;
-
+//Варіант №3: Клас книги: назва, ім'я автора, кількістьь сторінок,  рік видання
 class Book
 {
 private:

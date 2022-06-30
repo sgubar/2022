@@ -13,15 +13,19 @@ void inputMat(int x, int y, int mat[x][y])
             }
       }
 }
-void mulMat(int z, int x, int y, int mat[x][y]){
+void mulMat(int z, int x, int y, int mat[x][y])
+{
       int x1, y1;
-for (x1 = 0; x1 < x; x1++){
-      for (y1 = 0; y1 < y; y1++){
-            mat[x1][y1] = ((mat[x1][y1]) * z);
+for (x1 = 0; x1 < x; x1++)
+      {
+      for (y1 = 0; y1 < y; y1++)
+            {
+            mat[x1][y1] = (mat[x1][y1]) * z;
+            }
       }
 }
-}
-void printMulMat(int x, int y, int mat[x][y]){
+void printMulMat(int x, int y, int mat[x][y])
+{
       int x1, y1;
       for (x1 = 0; x1 < x; x1++)
       {

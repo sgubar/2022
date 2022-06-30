@@ -1,12 +1,10 @@
-#ifndef 
-#define 
+#ifndef DK_TOOL_H_INCLUDED
+#define DK_TOOL_H_INCLUDED
+
 #include <stdio.h>
-int m, n, p, q, c, d, k, sum;
-int first[6][6], second[6][6], multiply[6][6];
-void printf_size1 ();
-void matrix1_elements ();
-void printf_size2 ();
-void matrix2_elements ();
-void multiple ();
-void result ();
+
+void inputMat(int x, int y, int mat[x][y]);
+void mulMat(int z, int x, int y, int mat[x][y]);
+void printMulMat(int x, int y, int mat[x][y]);
+
 #endif

@@ -1,7 +1,3 @@
-//
-// Created by akimi on 13.07.22.
-//
-
 #include <iostream>
 #include "Product.h"
 

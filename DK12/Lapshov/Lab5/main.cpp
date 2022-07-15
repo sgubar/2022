@@ -13,7 +13,7 @@ int main() {
     for(int i = 0; i<3; i++){
         cout << "Name: " << product[i]->getName() << "Id: " << product[i]->getId() << endl;
     }
-    cout << "Ohh no all products are disappeared" << endl;
+    cout << "Ohh no all products have disappeared" << endl;
     for(int i = 0; i<3; i++){
        delete product[i];
     }
